@@ -12,8 +12,11 @@ int writecount=0;
 int database = 0;
 
 void init_state() {
-	sem_init(&sem_read, NULL, 1);
-	sem_init(&sem_write, NULL, 1);
+	sem_init(&sem_read, 0, 1);
+	sem_init(&sem_write, 0, 1);
+	pthread_mutex_init(&mutex_readcount,NULL);
+	pthread_mutex_init(&mutex_writecount,NULL);
+	pthread_mutex_init(&mutex_z,NULL);
 }
 void* writer_main() {
 	for(int i = 0; i < 640;i++)

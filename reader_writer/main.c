@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
     int opt;
     int thread_writer_count = 0;
 	int thread_reader_count = 0;
-    while((opt = getopt(argc, argv, "N:fs")) != -1) {
+    /*while((opt = getopt(argc, argv, "N:fs")) != -1) {
         switch(opt) {
             case 'W':
                 if(sscanf(optarg, "%d", &thread_writer_count) != 1 || thread_writer_count <= 0) {
@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
                 fprintf(stderr, "Unexpected option\n");
                 print_usage();
         }
-    }
+    }*/
 
    
 

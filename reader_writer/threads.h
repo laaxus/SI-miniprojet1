@@ -1,5 +1,5 @@
 /** \file threads.h
- * The different threads of the program.
+ * The different threads of the program. \ref init_state and \ref destroy_state must be called before and after using any functionality provided by this header, respectively.
  */
 #pragma once
 #include <pthread.h>
