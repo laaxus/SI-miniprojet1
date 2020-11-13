@@ -18,7 +18,8 @@ for file in 'rw' 'ph' 'pc'
         do
         
             make clean
-            cTime=$(/usr/bin/time -f "%e" make -"$file" $i 2>&1 | tail -n 1)
+            make "$file"
+            cTime=$(/usr/bin/time -f "%e" ./"$file" -P $i | tail -n 1)
             echo -n ",$cTime" > ./"$filename".csv
         
         done
