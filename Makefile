@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-std=gnu99 -Wall -Wextra
+CFLAGS=-std=gnu99 -Wall -Wextra 
 LIBS=-lm -lpthread -lcunit 
 CODEFILES_RW=threads.c
 CODEFILES_PH=threads.c
@@ -12,14 +12,14 @@ ph: philosophe/*
 	cd philosophe && $(CC) $(CFLAGS) -o ../ph -O3 $(CODEFILES_PH) main.c $(LIBS)
 	
 pc: producer_consumer/*
-	cd producer_consumer && $(CC) $(CFLAGS) -o ../pc -O3 $(CODEFILES_PC) main.c $(LIBS)
+	cd producer_consumer && $(CC) $(CFLAGS) -o ../pc -g $(CODEFILES_PC) main.c $(LIBS)
 
     
 #timer: c/*
 #	cd c && $(CC) $(CFLAGS) -o ../timer -O3 timer.c $(LIBS)
 
-#debug: c/*
-#	cd c && $(CC) $(CFLAGS) -o ../debug -g $(CODEFILES) main.c $(LIBS)
+debug: c/*
+	cd c && $(CC) $(CFLAGS) -o ../debug -g $(CODEFILES) main.c $(LIBS)
 
 doc: 
 	doxygen

@@ -41,31 +41,26 @@ int main(int argc, char **argv) {
 
     // Parses options
     int opt;
-    int thread_producer_count = 0;
-	int thread_consumer_count = 0;
-    /*while((opt = getopt(argc, argv, "PC:")) != -1) {
+    int thread_producer_count = 7;
+	int thread_consumer_count = 2;
+    while((opt = getopt(argc, argv, "P:C:")) != -1) {
         switch(opt) {
             case 'P':
-                if(sscanf(optarg, "%d", &thread_producer_count) != 1 || thread_producer_count <= 0) {
-                    fprintf(stderr,"Expected a positive integer after the -W option\n");
-                    print_usage();
-                }
+				thread_producer_count = atoi(optarg);
+				if(thread_producer_count == 0)
+					fprintf(stderr,"Expected a positive integer after the -P option\n");
                 break;
 			case 'C':
-                if(sscanf(optarg, "%d", &thread_consumer_count) != 1 || thread_consumer_count <= 0) {
-                    fprintf(stderr,"Expected a positive integer after the -R option\n");
-                    print_usage();
-                }
+				thread_consumer_count = atoi(optarg);
+				if(thread_consumer_count == 0)
+					fprintf(stderr,"Expected a positive integer after the -C option\n");
                 break;
             default:
                 fprintf(stderr,"Unexpected option\n");
                 print_usage();
         }
-    } */
+    } 
 	
-	
-
-
     // If the number of threads was not specified for writers, then uses 1 core
     if(thread_producer_count == 0) {
         thread_producer_count = 2;
@@ -117,6 +112,7 @@ int main(int argc, char **argv) {
     // Frees resources
     free(threads_producer);
 	free(threads_consumer);
-
+	
+	
     return 0; 
 }

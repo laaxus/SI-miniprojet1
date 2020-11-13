@@ -42,20 +42,19 @@ int main(int argc, char **argv) {
     
     int opt;
     int thread_philo_count = 0;
-    /*while((opt = getopt(argc, argv, "N:fs")) != -1) {
+    while((opt = getopt(argc, argv, "N:")) != -1) {
         switch(opt) {
             case 'N':
-                if(sscanf(optarg, "%d", &thread_philo_count) != 1 || thread_philo_count <= 0) {
-                    fprintf(stderr, "Expected a positive integer after the -W option\n");
-                    print_usage();
-                }
+                thread_philo_count = atoi(optarg);
+				if(thread_philo_count == 0)
+					fprintf(stderr,"Expected a positive integer after the -N option\n");
                 break;
 			
             default:
                 fprintf(stderr, "Unexpected option\n");
                 print_usage();
         }
-    }*/
+    }
 
    
 

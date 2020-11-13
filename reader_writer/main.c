@@ -45,25 +45,23 @@ int main(int argc, char **argv) {
     int opt;
     int thread_writer_count = 0;
 	int thread_reader_count = 0;
-    /*while((opt = getopt(argc, argv, "N:fs")) != -1) {
+    while((opt = getopt(argc, argv, "R:W:")) != -1) {
         switch(opt) {
             case 'W':
-                if(sscanf(optarg, "%d", &thread_writer_count) != 1 || thread_writer_count <= 0) {
-                    fprintf(stderr, "Expected a positive integer after the -W option\n");
-                    print_usage();
-                }
+                thread_writer_count = atoi(optarg);
+				if(thread_writer_count == 0)
+					fprintf(stderr,"Expected a positive integer after the -W option\n");
                 break;
 			case 'R':
-                if(sscanf(optarg, "%d", &thread_writer_count) != 1 || thread_writer_count <= 0) {
-                    fprintf(stderr, "Expected a positive integer after the -R option\n");
-                    print_usage();
-                }
+                thread_reader_count = atoi(optarg);
+				if(thread_reader_count == 0)
+					fprintf(stderr,"Expected a positive integer after the -R option\n");
                 break;
             default:
                 fprintf(stderr, "Unexpected option\n");
                 print_usage();
         }
-    }*/
+    }
 
    
 
