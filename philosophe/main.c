@@ -13,9 +13,9 @@ const char* help_string =
     "Usage: ph [-N NUMBER_OF_PHILOSOPHER_THREADS]  \n"
     "\n"
     " -N NUMBER_OF_PHILOSOPHER_THREADS Specify how many philosopher the program should use.\n"
-    "                      		   The argument should be a positive integer.\n"
-    "                              By default, the program will use all available\n"
-    "                     		   cores on the machine.\n";
+    "                      		       The argument should be a positive integer.\n"
+    "                                  By default, the program will use all available\n"
+    "                     		       cores on the machine.\n";
    
 
 // Prints the help string and exits with an error code.

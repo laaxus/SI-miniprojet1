@@ -10,14 +10,14 @@
 
 
 const char* help_string =
-    "Usage: pc [-P NUMBER_OF_WRITER_THREADS] [-C NUMBER_OF_CONSUMER_THREADS] \n"
+    "Usage: pc [-P NUMBER_OF_PRODUCER_THREADS] [-C NUMBER_OF_CONSUMER_THREADS] \n"
     "\n"
     " -P NUMBER_OF_PRODUCER_THREADS  Specify how many threads the program should use for producers.\n"
-    "                      		   The argument should be a positive integer.\n"
-    "                              By default, the program will use 2 threads for producer\n"
+    "                      	         The argument should be a positive integer.\n"
+    "                                By default, the program will use 2 threads for producer\n"
     " -C NUMBER_OF_CONSUMER_THREADS  Specify how many threads the program should use for consumers.\n"
-    "                      		   The argument should be a positive integer.\n"
-    "                              By default, the program will use 2 threads for consumers\n";
+    "                                The argument should be a positive integer.\n"
+    "                                By default, the program will use 2 threads for consumers\n";
 
 // Prints the help string and exits with an error code.
 void print_usage() {
