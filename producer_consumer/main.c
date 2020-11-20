@@ -15,6 +15,7 @@ const char* help_string =
     " -P NUMBER_OF_PRODUCER_THREADS  Specify how many threads the program should use for producers.\n"
     "                      	         The argument should be a positive integer.\n"
     "                                By default, the program will use 2 threads for producer\n"
+	" \n"
     " -C NUMBER_OF_CONSUMER_THREADS  Specify how many threads the program should use for consumers.\n"
     "                                The argument should be a positive integer.\n"
     "                                By default, the program will use 2 threads for consumers\n";

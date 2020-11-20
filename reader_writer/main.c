@@ -15,6 +15,7 @@ const char* help_string =
     " -W NUMBER_OF_WRITER_THREADS  Specify how many threads the program should use for writers.\n"
     "                      		   The argument should be a positive integer.\n"
     "                              By default, the program will use 1 thread for writers\n"
+	"\n"
     " -R NUMBER_OF_READER_THREADS  Specify how many threads the program should use for readers.\n"
     "                      		   The argument should be a positive integer.\n"
     "                              By default, the program will use all available\n"
