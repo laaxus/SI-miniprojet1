@@ -13,15 +13,14 @@
 void init_state();
 
 
-
-pthread_t start_producer_thread();
 /**
  * \brief Starts a producer thread.
  * \return The pthread_t object associated with the created thread.
  */
- 
- pthread_t start_consumer_thread();
-/**
+pthread_t start_producer_thread();
+
+ /**
  * \brief Starts a consumer thread.
  * \return The pthread_t object associated with the created thread.
  */
+pthread_t start_consumer_thread();

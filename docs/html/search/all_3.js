@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['start_5fconsumer_5fthread_3',['start_consumer_thread',['../producer__consumer_2threads_8h.html#a30cc558d09f565e361f4fd60b471e614',1,'threads.c']]],
-  ['start_5freader_5fthread_4',['start_reader_thread',['../reader__writer_2threads_8h.html#afb0e0f0b8dbadc6bf744a43e2b882a8c',1,'threads.c']]]
+  ['n_3',['N',['../test__and__set_2threads_8h.html#a7722c8ecbb62d99aee7ce68b1752f337',1,'N():&#160;threads.c'],['../test__and__test__and__set_2threads_8h.html#a7722c8ecbb62d99aee7ce68b1752f337',1,'N():&#160;threads.c']]]
 ];

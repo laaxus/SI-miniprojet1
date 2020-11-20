@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet LINFO1252: reader_writer/threads.h File Reference</title>
+<title>Projet LINFO1252: philosophe/threads.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,12 +61,13 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e432057fa1c149d7104ccf7f25ff6564.html">reader_writer</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_0ccde2c4d5bc8f65cd3e5c83e7626611.html">philosophe</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">threads.h File Reference</div>  </div>
 </div><!--header-->
@@ -74,64 +75,53 @@ $(function() {
 <div class="textblock"><code>#include &lt;pthread.h&gt;</code><br />
 <code>#include &lt;semaphore.h&gt;</code><br />
 </div>
-<p><a href="reader__writer_2threads_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="philosophe_2threads_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a684accf6a94edb6102f4bb0e8a5731fb"><td class="memItemLeft" align="right" valign="top"><a id="a684accf6a94edb6102f4bb0e8a5731fb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader__writer_2threads_8h.html#a684accf6a94edb6102f4bb0e8a5731fb">init_state</a> ()</td></tr>
-<tr class="memdesc:a684accf6a94edb6102f4bb0e8a5731fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the semaphores required for the threads to function properly. <br /></td></tr>
-<tr class="separator:a684accf6a94edb6102f4bb0e8a5731fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c20d18553e54dd4e3bfa8fb498d4645"><td class="memItemLeft" align="right" valign="top"><a id="a5c20d18553e54dd4e3bfa8fb498d4645"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="philosophe_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">init_state</a> (int thread_count)</td></tr>
+<tr class="memdesc:a5c20d18553e54dd4e3bfa8fb498d4645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes <a class="el" href="test__and__test__and__set_2threads_8h.html#af533feaf39f498a40cfb29eb547b28fd">mtx</a>, <a class="el" href="philosophe_2threads_8h.html#ae4c7a034151e40cdc9f2c98b55034522">PHILOSOPHES</a>,the state required for the threads to function properly. <br /></td></tr>
+<tr class="separator:a5c20d18553e54dd4e3bfa8fb498d4645"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6748af86f60277ab8cfdb32e4bb3355a"><td class="memItemLeft" align="right" valign="top"><a id="a6748af86f60277ab8cfdb32e4bb3355a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader__writer_2threads_8h.html#a6748af86f60277ab8cfdb32e4bb3355a">destroy_state</a> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="philosophe_2threads_8h.html#a6748af86f60277ab8cfdb32e4bb3355a">destroy_state</a> ()</td></tr>
 <tr class="memdesc:a6748af86f60277ab8cfdb32e4bb3355a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the state that was initialized by <a class="el" href="test__and__test__and__set_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">init_state</a>. <br /></td></tr>
 <tr class="separator:a6748af86f60277ab8cfdb32e4bb3355a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7342636e1b19c4873d55cec87dbcc3d"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader__writer_2threads_8h.html#ac7342636e1b19c4873d55cec87dbcc3d">start_writer_thread</a> ()</td></tr>
-<tr class="memdesc:ac7342636e1b19c4873d55cec87dbcc3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a writer thread.  <a href="reader__writer_2threads_8h.html#ac7342636e1b19c4873d55cec87dbcc3d">More...</a><br /></td></tr>
-<tr class="separator:ac7342636e1b19c4873d55cec87dbcc3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb0e0f0b8dbadc6bf744a43e2b882a8c"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader__writer_2threads_8h.html#afb0e0f0b8dbadc6bf744a43e2b882a8c">start_reader_thread</a> ()</td></tr>
-<tr class="memdesc:afb0e0f0b8dbadc6bf744a43e2b882a8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a reader thread.  <a href="reader__writer_2threads_8h.html#afb0e0f0b8dbadc6bf744a43e2b882a8c">More...</a><br /></td></tr>
-<tr class="separator:afb0e0f0b8dbadc6bf744a43e2b882a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2efc1cbef3f84a7f0a1137b12557e49"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="philosophe_2threads_8h.html#ae2efc1cbef3f84a7f0a1137b12557e49">start_philo_thread</a> (int arg)</td></tr>
+<tr class="memdesc:ae2efc1cbef3f84a7f0a1137b12557e49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a philosophe thread.  <a href="philosophe_2threads_8h.html#ae2efc1cbef3f84a7f0a1137b12557e49">More...</a><br /></td></tr>
+<tr class="separator:ae2efc1cbef3f84a7f0a1137b12557e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:af533feaf39f498a40cfb29eb547b28fd"><td class="memItemLeft" align="right" valign="top"><a id="af533feaf39f498a40cfb29eb547b28fd"></a>
+pthread_mutex_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="philosophe_2threads_8h.html#af533feaf39f498a40cfb29eb547b28fd">mtx</a></td></tr>
+<tr class="memdesc:af533feaf39f498a40cfb29eb547b28fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of mutex threads use. <br /></td></tr>
+<tr class="separator:af533feaf39f498a40cfb29eb547b28fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c7a034151e40cdc9f2c98b55034522"><td class="memItemLeft" align="right" valign="top"><a id="ae4c7a034151e40cdc9f2c98b55034522"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="philosophe_2threads_8h.html#ae4c7a034151e40cdc9f2c98b55034522">PHILOSOPHES</a></td></tr>
+<tr class="memdesc:ae4c7a034151e40cdc9f2c98b55034522"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of philosophe/threads. <br /></td></tr>
+<tr class="separator:ae4c7a034151e40cdc9f2c98b55034522"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The different threads of the program. <a class="el" href="test__and__test__and__set_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">init_state</a> and <a class="el" href="test__and__test__and__set_2threads_8h.html#a6748af86f60277ab8cfdb32e4bb3355a">destroy_state</a> must be called before and after using any functionality provided by this header, respectively. </p>
+<div class="textblock"><p>The different threads of the program. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="afb0e0f0b8dbadc6bf744a43e2b882a8c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb0e0f0b8dbadc6bf744a43e2b882a8c">&#9670;&nbsp;</a></span>start_reader_thread()</h2>
+<a id="ae2efc1cbef3f84a7f0a1137b12557e49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2efc1cbef3f84a7f0a1137b12557e49">&#9670;&nbsp;</a></span>start_philo_thread()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">pthread_t start_reader_thread </td>
+          <td class="memname">pthread_t start_philo_thread </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Starts a reader thread. </p>
-<dl class="section return"><dt>Returns</dt><dd>The pthread_t object associated with the created thread. </dd></dl>
-
-</div>
-</div>
-<a id="ac7342636e1b19c4873d55cec87dbcc3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7342636e1b19c4873d55cec87dbcc3d">&#9670;&nbsp;</a></span>start_writer_thread()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">pthread_t start_writer_thread </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Starts a writer thread. </p>
+<p>Starts a philosophe thread. </p>
 <dl class="section return"><dt>Returns</dt><dd>The pthread_t object associated with the created thread. </dd></dl>
 
 </div>

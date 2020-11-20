@@ -2,22 +2,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-pthread_mutex_t* mtx; 
-
+//number of thread
 int N;
+
+//home made mutex
 long mutex;
 
 void init_state(int nb) {
 	N = nb;
 	
 	//define lock
-	mutex = 0;
-      
+	mutex = 0; 
 }
 
-void destroy_state() {
-    return;
-}
 
 void* tas_main() {
 	 int count = 6400 / N;

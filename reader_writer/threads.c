@@ -18,6 +18,7 @@ void init_state() {
 	pthread_mutex_init(&mutex_writecount,NULL);
 	pthread_mutex_init(&mutex_z,NULL);
 }
+
 void* writer_main() {
 	for(int i = 0; i < 640;i++)
 	{

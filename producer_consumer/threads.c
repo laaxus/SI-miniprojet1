@@ -1,11 +1,16 @@
 #include "threads.h"
 
 int N;
+int db[8];
+
 pthread_mutex_t mutex;
 sem_t empty;
 sem_t full;
-int db[8];
+
+//number of item produced
 int item_produced;
+
+//number of item consumed
 int item_consumed;
 
 void init_state() {

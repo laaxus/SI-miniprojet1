@@ -16,7 +16,7 @@ extern pthread_mutex_t* mtx;
 extern int PHILOSOPHES;
 
 /**
- * \brief Initializes \ref mtx, \ref PHILOSOPHES,the state required for the threads to function properly.
+ * \brief Initializes \ref mtx, \ref PHILOSOPHES, the state required for the threads to function properly.
  */
 void init_state(int thread_count);
 
@@ -25,9 +25,10 @@ void init_state(int thread_count);
  */
 void destroy_state();
 
-pthread_t start_philo_thread(int arg);
 /**
- * \brief Starts a writer thread.
+ * \brief Starts a philosophe thread.
  * \return The pthread_t object associated with the created thread.
  */
+pthread_t start_philo_thread(int arg);
+
  
