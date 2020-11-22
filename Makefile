@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-std=gnu99 -Wall -Wextra 
-LIBS=-lm -lpthread -lcunit 
+LIBS=-lm -lpthread  
 CODEFILES_RW=threads.c
 CODEFILES_PH=threads.c
 CODEFILES_PC=threads.c
