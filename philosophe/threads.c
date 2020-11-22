@@ -6,6 +6,9 @@ pthread_mutex_t* mtx;
 
 int PHILOSOPHES;
 
+//nb de fois qu'il mange et pense
+int PM_MAX = 10000;
+
 void init_state(int nb) {
 	PHILOSOPHES = nb;
 	mtx = malloc(sizeof(pthread_mutex_t) * nb);
@@ -29,7 +32,8 @@ void* philo_main(void* arg) {
 	 int *id=(int *) arg;
 	 int left = *id;
 	 int right = (left + 1) % PHILOSOPHES;
-	 for(int i = 0; i < 1000000;i++)
+	 
+	 for(int i = 0; i < PM_MAX;i++)
 	{
 		 // philosophe pense
 		 if(left<right) {

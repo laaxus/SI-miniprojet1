@@ -15,6 +15,10 @@ int item_produced;
 //number of item consumed
 int item_consumed;
 
+//MAX
+int PRODUCED_MAX = 1024;
+int CONSUMED_MAX = 1024;
+
 void my_sem_init(int* sem, int n)
 {
 	*sem = n;
@@ -105,7 +109,7 @@ void* producer_main() {
 		my_mutex_lock(&mutex);
 		
 
-		if(item_produced >= 1024)
+		if(item_produced >= PRODUCED_MAX)
 		{
 			my_mutex_unlock(&mutex);
 			my_sem_post(&full);
@@ -135,7 +139,7 @@ void* consumer_main() {
 		my_sem_wait(&full); // attente d'une place remplie
 		my_mutex_lock(&mutex);
 	
-		if(item_consumed >= 1024)
+		if(item_consumed >= CONSUMED_MAX)
 		{
 			my_mutex_unlock(&mutex);
 			my_sem_post(&empty);
