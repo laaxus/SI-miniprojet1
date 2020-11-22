@@ -36,7 +36,7 @@ int get_available_cpus() {
 }
 
 int main(int argc, char **argv) {
-   /* if(argc < 2) print_usage();
+   if(argc < 2) print_usage();
 
     // Parses options
     
@@ -90,15 +90,7 @@ int main(int argc, char **argv) {
 
     // Frees resources
     free(threads);
-	destroy_state();
-	
-	*/
-	
-	int test = 1;
-	
-	my_mutex_unlock(&test);
-	
-	printf("%d\n",test);
+
 	
     return 0;
 }

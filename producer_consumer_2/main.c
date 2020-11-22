@@ -115,7 +115,9 @@ int main(int argc, char **argv) {
 	free(threads_consumer);
 	
 	*/
-	int test = 0;
+	int test = 1;
+	
+	
 	
 	my_sem_post(&test);
 	
