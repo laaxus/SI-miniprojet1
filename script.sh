@@ -40,9 +40,13 @@
         done
     }
     
-    create_csv MeasuresRW rw -R -W
-    create_csv MeasuresPH ph -N
-    create_csv MeasuresPC pc -C -P
+    #create_csv MeasuresRW rw -R -W
+    #create_csv MeasuresPH ph -N
+    #create_csv MeasuresPC pc -C -P
     #create_csv MeasuresTS ts -N
+    #create_csv MeasuresTTS tts -N
+    create_csv MeasuresRW rw2 -R -W
+    create_csv MeasuresPH ph2 -N
+    create_csv MeasuresPC pc2 -C -P
     
-} &> /dev/null
+} #&> /dev/null
