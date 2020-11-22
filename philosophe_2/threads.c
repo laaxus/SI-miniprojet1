@@ -2,50 +2,110 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-pthread_mutex_t* mtx; 
+int* mtx; 
 
 int PHILOSOPHES;
 
+void my_sem_init(int* sem, int n)
+{
+	*sem = n;
+}
+
+void my_sem_wait(int* sem)
+{
+	asm(
+			"1:"
+			"movl %0, %%eax;"
+			"testl %%eax, %%eax;"    
+			"je 1b;"
+			"2:"
+			"decl %0;"    
+			:"=m"(*sem)
+			:"m"(*sem)
+			:"%eax"			
+		); 
+}
+
+void my_sem_post(int* sem)
+{
+	asm(
+			"incl %0;"
+			:"=m"(*sem)
+			:"m"(*sem)
+			:
+		); 
+}
+
+
+void my_mutex_init(int* mtx)
+{
+	*mtx = 0;
+}
+
+
+void my_mutex_lock(int* mtx)
+{
+	asm(
+			"1:"
+			"movl %0, %%eax;"
+			"testl %%eax, %%ebx;"    
+			"jne 1b;"
+			"2:"
+			"movl $1, %%eax;"
+			"xchgl %%eax, %0;"
+			"testl %%eax, %%eax;"    
+			"jne 1b;"
+			:"=m"(*mtx)
+			:"m"(*mtx)
+			:"%eax"
+		); 
+}
+
+void my_mutex_unlock(int* mtx)
+{
+	asm(
+			"movl $0, %0;"
+			:"=m"(*mtx)
+			:"m"(*mtx)
+			:
+		);
+}
+
 void init_state(int nb) {
 	PHILOSOPHES = nb;
-	mtx = malloc(sizeof(pthread_mutex_t) * nb);
+	mtx = (int *) malloc(sizeof(int) * nb);
 	
 	if(mtx == NULL)
 		exit(1);
 	
 	for(int i = 0; i < nb;i++)
-		if(pthread_mutex_init(&mtx[i],NULL) != 0)
-		{
-			printf("error mutex init\n");
-			exit(1);
-		}
+		my_mutex_init(&mtx[i]);
+		
 }
 
-void destroy_state() {
-    free(mtx);
-}
+
 
 void* philo_main(void* arg) {
-	 int *id=(int *) arg;
+	 int *id = (int *) arg;
 	 int left = *id;
 	 int right = (left + 1) % PHILOSOPHES;
 	 for(int i = 0; i < 10000;i++)
 	{
 		 // philosophe pense
 		 if(left<right) {
-		 pthread_mutex_lock(&mtx[left]);
-		 pthread_mutex_lock(&mtx[right]);
+		 my_mutex_lock(&mtx[left]);
+		 my_mutex_lock(&mtx[right]);
 		 }
 		 else {
-		 pthread_mutex_lock(&mtx[right]);
-		 pthread_mutex_lock(&mtx[left]);
+		 my_mutex_lock(&mtx[right]);
+		 my_mutex_lock(&mtx[left]);
 		 }
 		 
 		 //mange
 		 
 		 //il a plus faim
-		 pthread_mutex_unlock(&mtx[left]);
-		 pthread_mutex_unlock(&mtx[right]);
+		 my_mutex_unlock(&mtx[left]);
+		 my_mutex_unlock(&mtx[right]);
 	 }
  return NULL;
 }

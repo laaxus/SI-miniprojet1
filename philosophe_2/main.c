@@ -93,6 +93,5 @@ int main(int argc, char **argv) {
 	
     // Frees resources
     free(threads);
-	destroy_state();
     return 0;
 }

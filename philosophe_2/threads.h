@@ -8,7 +8,7 @@
 /**
  * \brief Array of mutex threads use
  */
-extern pthread_mutex_t* mtx;
+extern int* mtx;
 
 /**
  * \brief Number of philosophe/threads
@@ -20,10 +20,6 @@ extern int PHILOSOPHES;
  */
 void init_state(int thread_count);
 
-/**
- * \brief Destroys the state that was initialized by \ref init_state.
- */
-void destroy_state();
 
 /**
  * \brief Starts a philosophe thread.
