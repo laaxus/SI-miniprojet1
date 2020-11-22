@@ -6,6 +6,9 @@ int* mtx;
 
 int PHILOSOPHES;
 
+//nb de fois qu'il mange et pense
+int PM_MAX = 10000;
+
 void my_sem_init(int* sem, int n)
 {
 	*sem = n;
@@ -89,7 +92,7 @@ void* philo_main(void* arg) {
 	 int *id = (int *) arg;
 	 int left = *id;
 	 int right = (left + 1) % PHILOSOPHES;
-	 for(int i = 0; i < 10000;i++)
+	 for(int i = 0; i < PM_MAX;i++)
 	{
 		 // philosophe pense
 		 if(left<right) {
