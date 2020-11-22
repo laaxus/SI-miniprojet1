@@ -16,8 +16,8 @@ int item_produced;
 int item_consumed;
 
 //MAX
-int PRODUCED_MAX = 1024;
-int CONSUMED_MAX = 1024;
+int PRODUCED_MAX = 128;
+int CONSUMED_MAX = 128;
 
 void my_sem_init(int* sem, int n)
 {

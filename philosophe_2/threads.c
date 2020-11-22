@@ -7,7 +7,7 @@ int* mtx;
 int PHILOSOPHES;
 
 //nb de fois qu'il mange et pense
-int PM_MAX = 10000;
+int PM_MAX = 100;
 
 void my_sem_init(int* sem, int n)
 {

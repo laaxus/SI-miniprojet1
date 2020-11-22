@@ -9,8 +9,8 @@ int sem_write;
 int readcount=0; // nombre de readers
 int writecount=0;
 
-int NBWRITING=30720;
-int NBREADING=122880;
+int NBWRITING=128;
+int NBREADING=512;
 
 int database = 0;
 
