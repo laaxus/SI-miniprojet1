@@ -6,7 +6,7 @@
 int N;
 
 //home made mutex
-long mutex;
+int mutex;
 
 void init_state(int nb) {
 	N = nb;
@@ -15,29 +15,45 @@ void init_state(int nb) {
 	mutex = 0; 
 }
 
+void my_mutex_lock(int* mtx)
+{
+	asm(
+			"1:"
+			"movl $1, %%eax;"
+			"xchgl %%eax, %0;"
+			"testl %%eax, %%eax;"    
+			"jne 1b;"
+			:"=m"(*mtx)
+			:"m"(*mtx)
+			:"%eax"
+		); 
+}
+
+void my_mutex_unlock(int* mtx)
+{
+	asm(
+			"movl $0, %0;"
+			:"=m"(*mtx)
+			:"m"(*mtx)
+			:
+		);
+}
 
 void* tas_main() {
-	 int count = 6400 / N;
-	 while(count--)
+	int count = 6400 / N;
+	while(count--)
 	{
+
 		//entre zone critique
-		asm(
-			"enter:"
-				"movl $1, %eax;"
-				"xchgl %eax, mutex;"
-				"testl %eax, %eax;"    
-				"jnz enter;"			
-		); 
+		my_mutex_lock(&mutex);
+		
 
 		while(rand() > RAND_MAX/10000)
 			continue;
 		
 		//sort zone critique
-		asm(
-			"leave:"					
-				"movl $0, %eax;"		
-				"xchgl %eax, mutex;"				
-		);
+		my_mutex_unlock(&mutex);
+
 	}
  return NULL;
 }

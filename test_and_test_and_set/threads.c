@@ -15,61 +15,52 @@ void init_state(int nb) {
 	mutex = 0; 
 }
 
-/*
-			"1:"
-			"movl %0, %%eax;"
-			"movl $0, %%ebx;"
-			"cmpl %%eax, %%ebx;"    
-			"jne 1b;"
-
-			
-			*/
 
 void my_mutex_lock(int* mtx)
 {
 	asm(
 			"1:"
+			"movl %0, %%eax;"
+			"testl %%eax, %%ebx;"    
+			"jne 1b;"
+			"2:"
 			"movl $1, %%eax;"
 			"xchgl %%eax, %0;"
-			"movl $0, %%ebx;"
-			"cmpl %%eax, %%ebx;"    
+			"testl %%eax, %%eax;"    
 			"jne 1b;"
-			:"=r"(*mtx)
-			:"r"(*mtx)
-			:"%eax","%ebx"
+			:"=m"(*mtx)
+			:"m"(*mtx)
+			:"%eax"
 		); 
 }
 
 void my_mutex_unlock(int* mtx)
 {
 	asm(
-			"movl $0, %%eax;"
-			"xchgl %%eax, %0;"
-			:"=r"(*mtx)
-			:"r"(*mtx)
-			:"%eax"
+			"movl $0, %0;"
+			:"=m"(*mtx)
+			:"m"(*mtx)
+			:
 		);
 }
 
 
+
 void* tatas_main() {
-	 int count = 6 / N;
+	 int count = 6400 / N;
 	 while(count--)
 	{
-		printf("A\n");
-		fflush(stdout);
+
 		//entre zone critique
 		my_mutex_lock(&mutex);
 		
-		printf("%d\n",count);
-		fflush(stdout);
+
 		while(rand() > RAND_MAX/10000)
 			continue;
 		
 		//sort zone critique
 		my_mutex_unlock(&mutex);
-		printf("B\n");
-		fflush(stdout);
+
 	}
  return NULL;
 }

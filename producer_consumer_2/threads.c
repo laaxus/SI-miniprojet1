@@ -21,24 +21,24 @@ void my_sem_init(int* sem, int n)
 void my_sem_wait(int* sem)
 {
 	asm(
-			"retry:"
-			"movl mutex, %eax;"
+			"1:"
+			"movl %0, %eax;"
 			"testl %eax, %eax;"    
-			"jnz retry;"
-			"enter:"
-			"movl $1, %eax;"
-			"xchgl %eax, mutex;"
-			"testl %eax, %eax;"    
-			"jnz retry;"			
+			"jz 1b;"
+			"decl %0;"
+			:"=r"(*sem)
+			:"r"(*sem)
+			:			
 		); 
 }
 
 void my_sem_post(int* sem)
 {
 	asm(
-			"incl (%1);"
+			"incl %1;"
 			:"=r"(*sem)
-			:"r"(sem)
+			:"r"(*sem)
+			:
 		); 
 }
 
