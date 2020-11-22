@@ -9,6 +9,9 @@ sem_t sem_write;
 int readcount=0; // nombre de readers
 int writecount=0;
 
+int NBWRITING = 30720;
+int NBREADING = 122880;
+
 int database = 0;
 
 void init_state() {
@@ -20,7 +23,7 @@ void init_state() {
 }
 
 void* writer_main() {
-	for(int i = 0; i < 640;i++)
+	for(int i = 0; i < NBWRITING;i++)
 	{
 		pthread_mutex_lock(&mutex_writecount);
 		writecount++;
@@ -48,7 +51,7 @@ void* writer_main() {
 }
 
 void* reader_main() {
-	for(int i = 0; i < 2560;i++)
+	for(int i = 0; i < NBREADING;i++)
 	{
 		pthread_mutex_lock(&mutex_z);
 		sem_wait(&sem_read);
