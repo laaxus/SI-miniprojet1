@@ -6,7 +6,7 @@
 int N;
 
 //home made mutex
-long mutex;
+int mutex;
 
 void init_state(int nb) {
 	N = nb;
@@ -15,13 +15,9 @@ void init_state(int nb) {
 	mutex = 0; 
 }
 
-
-void* tatas_main() {
-	 int count = 6400 / N;
-	 while(count--)
-	{
-		//entre zone critique
-		asm(
+void my_mutex_lock(int* mutex)
+{
+	asm(
 			"retry:"
 			"movl mutex, %eax;"
 			"testl %eax, %eax;"    
@@ -32,16 +28,30 @@ void* tatas_main() {
 			"testl %eax, %eax;"    
 			"jnz retry;"			
 		); 
+}
+
+void my_mutex_unlock(int* mutex)
+{
+	asm(
+			"movl $0, %eax;"		
+			"xchgl %eax, %1;"
+			:"r"(*mutex)
+		);
+}
+
+/*
+void* tatas_main() {
+	 int count = 6400 / N;
+	 while(count--)
+	{
+		//entre zone critique
+		my_mutex_lock(&mutex);
 
 		while(rand() > RAND_MAX/10000)
 			continue;
 		
 		//sort zone critique
-		asm(
-			"leave:"					
-				"movl $0, %eax;"		
-				"xchgl %eax, mutex;"				
-		);
+		my_mutex_unlock(&mutex);
 	}
  return NULL;
 }
@@ -53,6 +63,7 @@ pthread_t start_thread() {
     return th;
 }
 
+*/
 
 
 

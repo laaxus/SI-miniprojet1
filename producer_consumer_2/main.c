@@ -38,7 +38,7 @@ int get_available_cpus() {
 }
 
 int main(int argc, char **argv) {
-    if(argc < 2) print_usage();
+    /*if(argc < 2) print_usage();
 
     // Parses options
     int opt;
@@ -114,6 +114,12 @@ int main(int argc, char **argv) {
     free(threads_producer);
 	free(threads_consumer);
 	
+	*/
+	int test = 0;
+	
+	my_sem_post(&test);
+	
+	printf("%d\n",test);
 	
     return 0; 
 }

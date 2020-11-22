@@ -33,32 +33,20 @@ void* philo_main(void* arg) {
 	{
 		 // philosophe pense
 		 if(left<right) {
-			pthread_mutex_lock(&mtx[left]);
-			pthread_mutex_lock(&mtx[right]);
+		 pthread_mutex_lock(&mtx[left]);
+		 pthread_mutex_lock(&mtx[right]);
 		 }
 		 else {
-		 
-			 if(left != right)// N > 1
-			 {
-				pthread_mutex_lock(&mtx[right]);
-				pthread_mutex_lock(&mtx[left]);
-			 }
-			 else // N == 1
-				pthread_mutex_lock(&mtx[left]);
+		 pthread_mutex_lock(&mtx[right]);
+		 pthread_mutex_lock(&mtx[left]);
 		 }
 		 
 		 //mange
 		 
 		 //il a plus faim
-		 if(left != right)// N > 1
-		 {
-			pthread_mutex_unlock(&mtx[left]);
-			pthread_mutex_unlock(&mtx[right]);
-		 }
-		 else // N == 1
-			pthread_mutex_unlock(&mtx[left]);
+		 pthread_mutex_unlock(&mtx[left]);
+		 pthread_mutex_unlock(&mtx[right]);
 	 }
-	 
  return NULL;
 }
 
