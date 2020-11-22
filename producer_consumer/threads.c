@@ -13,6 +13,11 @@ int item_produced;
 //number of item consumed
 int item_consumed;
 
+//MAX
+int PRODUCED_MAX = 1024;
+int CONSUMED_MAX = 1024;
+
+
 void init_state() {
 	N = 8;
 	for(int i = 0; i < N; i++)
@@ -36,7 +41,7 @@ void* producer_main() {
 		pthread_mutex_lock(&mutex);
 		
 
-		if(item_produced >= 1024)
+		if(item_produced >= PRODUCED_MAX)
 		{
 			pthread_mutex_unlock(&mutex);
 			sem_post(&full);
@@ -66,7 +71,7 @@ void* consumer_main() {
 		sem_wait(&full); // attente d'une place remplie
 		pthread_mutex_lock(&mutex);
 	
-		if(item_consumed >= 1024)
+		if(item_consumed >= CONSUMED_MAX)
 		{
 			pthread_mutex_unlock(&mutex);
 			sem_post(&empty);
