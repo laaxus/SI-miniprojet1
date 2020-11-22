@@ -1,5 +1,6 @@
 /** \file threads.h
  * The different threads of the program. \ref init_state  must be called before using any functionality provided by this header.
+*/
 #pragma once
 #include <pthread.h>
 #include <semaphore.h>

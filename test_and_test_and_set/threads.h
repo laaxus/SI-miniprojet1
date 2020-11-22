@@ -24,7 +24,7 @@ void init_state(int thread_count);
 pthread_t start_thread();
 
 
-void my_mutex_lock(int* mutex)
+void my_mutex_lock(int* mutex);
 
-void my_mutex_unlock(int* mutex)
+void my_mutex_unlock(int* mutex);
  

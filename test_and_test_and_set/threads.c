@@ -19,23 +19,28 @@ void my_mutex_lock(int* mutex)
 {
 	asm(
 			"retry:"
-			"movl mutex, %eax;"
-			"testl %eax, %eax;"    
+			"movl %0, %%eax;"
+			"testl %%eax, %%eax;"    
 			"jnz retry;"
 			"enter:"
-			"movl $1, %eax;"
-			"xchgl %eax, mutex;"
-			"testl %eax, %eax;"    
-			"jnz retry;"			
+			"movl $1, %%eax;"
+			"xchgl %%eax, %0;"
+			"testl %%eax, %%eax;"    
+			"jnz retry;"
+			:"=r"(*mtx)
+			:"r"(*mtx)
+			:"%eax"
 		); 
 }
 
-void my_mutex_unlock(int* mutex)
+void my_mutex_unlock(int* mtx)
 {
 	asm(
-			"movl $0, %eax;"		
-			"xchgl %eax, %1;"
-			:"r"(*mutex)
+			"movl $0, %%eax;"
+			"xchgl %%eax, %0;"
+			:"=r"(*mtx)
+			:"r"(*mtx)
+			:"%eax"
 		);
 }
 
