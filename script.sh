@@ -21,15 +21,15 @@
                 make clean
                 make $2
                 
-                if [$3 = "-N"]
+                if [ $3 = "-N" ]
                 then
                     cTime=$(/usr/bin/time -f "%e" ./"$2" "$3" $i 2>&1)
                 else
-                    if [$((i%2)) -eq 0]
+                    if [ $((i%2)) -eq 0 ]
                     then
                         cTime=$(/usr/bin/time -f "%e" ./"$2" "$3" $i/2 "$4" $i/2 2>&1)
                     else
-                        cTime=$(/usr/bin/time -f "%e" ./"$2" "$3" ($i/2)+1 "$4" $i/2 2>&1)
+                        cTime=$(/usr/bin/time -f "%e" ./"$2" "$3" $i/2+1 "$4" $i/2 2>&1)
                     fi
                 fi
 
@@ -43,5 +43,6 @@
     create_csv MeasuresRW rw -R -W
     create_csv MeasuresPH ph -N
     create_csv MeasuresPC pc -C -P
+    #create_csv MeasuresTS ts -N
     
 } &> /dev/null
