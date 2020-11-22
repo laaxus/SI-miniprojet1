@@ -8,13 +8,11 @@ int N;
 //home made mutex
 int mutex;
 
-void init_state(int nb) {
-	N = nb;
-	
-	//define lock
-	mutex = 0; 
-}
 
+void my_mutex_init(int* mtx)
+{
+	*mtx = 0;
+}
 
 void my_mutex_lock(int* mtx)
 {
@@ -44,7 +42,12 @@ void my_mutex_unlock(int* mtx)
 		);
 }
 
-
+void init_state(int nb) {
+	N = nb;
+	
+	//define lock
+	my_mutex_init(&mutex); 
+}
 
 void* tatas_main() {
 	 int count = 6400 / N;
