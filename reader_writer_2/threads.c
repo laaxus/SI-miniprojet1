@@ -6,6 +6,7 @@ typedef struct {
 	int lock;
 }sema;
 
+
 void my_sem_init(sema* sem, int n)
 {
 	(*sem).count = n;
