@@ -9,7 +9,6 @@ int N;
 int mutex;
 
 
-
 void my_mutex_init(int* mtx)
 {
 	*mtx = 0;
@@ -17,7 +16,7 @@ void my_mutex_init(int* mtx)
 
 void my_mutex_lock(int* mtx)
 {
-	asm(
+	asm volatile(
 			"1:"
 			"movl $1, %%eax;"
 			"xchgl %%eax, %0;"
@@ -31,7 +30,7 @@ void my_mutex_lock(int* mtx)
 
 void my_mutex_unlock(int* mtx)
 {
-	asm(
+	asm volatile(
 			"movl $0, %0;"
 			:"=m"(*mtx)
 			:"m"(*mtx)

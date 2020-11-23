@@ -1,64 +1,74 @@
 #include "threads.h"
 
-int N;
-int db[8];
 
 
-//home made mutex and semaphore
-int mutex;
-int empty;
-int full;
+typedef struct {
+	int count;
+	int lock;
+}sema;
 
-//number of item produced
-int item_produced;
-
-//number of item consumed
-int item_consumed;
-
-//MAX
-int PRODUCED_MAX = 1024;
-int CONSUMED_MAX = 1024;
-
-void my_sem_init(int* sem, int n)
+void my_sem_init( sema* sem, int n)
 {
-	*sem = n;
+	(*sem).count = n;
+	(*sem).lock = 0;
 }
 
-void my_sem_wait(int* sem)
+void my_sem_wait( sema* sem)
 {
-	asm(
+	asm volatile(
 			"1:"
 			"movl %0, %%eax;"
 			"testl %%eax, %%eax;"    
 			"je 1b;"
 			"2:"
-			"decl %0;"    
-			:"=m"(*sem)
-			:"m"(*sem)
-			:"%eax"			
+			"movl $1, %%eax;"
+			"xchgl %%eax, %1;"
+			"testl %%eax, %%eax;"    
+			"jne 1b;"
+			"movl %0, %%eax;"
+			"testl %%eax, %%eax;" 
+			"jne 3f;"
+			"movl $0, %1;"
+			"je 1b;"
+			"3:"
+			"decl %0;"  
+			"movl $0, %1;"			
+			:"=m"((*sem).count),"=m"((*sem).lock)
+			:"m"((*sem).count),"m"((*sem).lock)
+			:"%eax","memory"			
 		); 
 }
 
-void my_sem_post(int* sem)
+void my_sem_post( sema* sem)
 {
-	asm(
-			"incl %0;"
-			:"=m"(*sem)
-			:"m"(*sem)
-			:
+	asm volatile(
+			"1:"
+			"movl %1, %%eax;"
+			"testl %%eax, %%eax;"    
+			"jne 1b;"
+			"2:"
+			"movl $1, %%eax;"
+			"xchgl %%eax, %1;"
+			"testl %%eax, %%eax;"    
+			"jne 1b;"
+			"incl %0;"  
+			"movl $0, %1;"			
+			:"=m"((*sem).count),"=m"((*sem).lock)
+			:"m"((*sem).count),"m"((*sem).lock)
+			:"%eax","memory"
 		); 
 }
 
 
-void my_mutex_init(int* mtx)
+void my_mutex_init( int* mtx)
 {
 	*mtx = 0;
 }
 
 
-void my_mutex_lock(int* mtx)
+void my_mutex_lock( int* mtx)
 {
-	asm(
+	asm volatile(
 			"1:"
 			"movl %0, %%eax;"
 			"testl %%eax, %%ebx;"    
@@ -74,15 +84,35 @@ void my_mutex_lock(int* mtx)
 		); 
 }
 
-void my_mutex_unlock(int* mtx)
+void my_mutex_unlock( int* mtx)
 {
-	asm(
+	asm volatile(
 			"movl $0, %0;"
 			:"=m"(*mtx)
 			:"m"(*mtx)
 			:
 		);
 }
+
+
+int N;
+int db[8];
+
+//home made mutex and semaphore
+int mutex;
+sema empty;
+sema full;
+
+//number of item produced
+int item_produced;
+
+//number of item consumed
+int item_consumed;
+
+//MAX
+int PRODUCED_MAX = 100000;
+int CONSUMED_MAX = 100000;
+
 
 void init_state() {
 	N = 8;
@@ -108,14 +138,14 @@ void* producer_main() {
 		my_sem_wait(&empty); // attente d'une place libre
 		my_mutex_lock(&mutex);
 		
-
+		
 		if(item_produced >= PRODUCED_MAX)
 		{
 			my_mutex_unlock(&mutex);
 			my_sem_post(&full);
 			return NULL; //stop production
 		}
-
+	
 		 //insert item
 		 for(int i = 0; i < N; i++)
 		 {
@@ -126,9 +156,10 @@ void* producer_main() {
 			 }
 		 }
 		 item_produced++;
-	
+		
 		my_mutex_unlock(&mutex);
 		my_sem_post(&full); // il y a une place remplie en plus
+
 	}
 	return NULL;
 }
@@ -138,6 +169,7 @@ void* consumer_main() {
 	{
 		my_sem_wait(&full); // attente d'une place remplie
 		my_mutex_lock(&mutex);
+
 	
 		if(item_consumed >= CONSUMED_MAX)
 		{
@@ -145,7 +177,7 @@ void* consumer_main() {
 			my_sem_post(&empty);
 			return NULL; //stop consumption
 		}
-
+		
 		//consume item
 		 for(int i = 0; i < N; i++)
 		 {
@@ -158,11 +190,13 @@ void* consumer_main() {
 			 
 		//consuming
 		item_consumed++;
+
 		my_mutex_unlock(&mutex);
-		
+
 		//consuming item time simulation
 		while(rand() > RAND_MAX/10000)
 			continue;
+		
 		my_sem_post(&empty); // il y a une place libre en plus
 	}
 	return NULL;

@@ -90,6 +90,7 @@ int main(int argc, char **argv) {
 
     // Frees resources
     free(threads);
+
 	
     return 0;
 }

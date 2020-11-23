@@ -42,8 +42,8 @@ int main(int argc, char **argv) {
 
     // Parses options
     int opt;
-    int thread_producer_count = 7;
-	int thread_consumer_count = 2;
+    int thread_producer_count = 0;
+	int thread_consumer_count = 0;
     while((opt = getopt(argc, argv, "P:C:")) != -1) {
         switch(opt) {
             case 'P':
@@ -75,6 +75,8 @@ int main(int argc, char **argv) {
 	//init semaphore
 	init_state();
    
+   printf("P = %d, C = %d\n", thread_producer_count, thread_consumer_count);
+   
     // Starts the processing
     pthread_t* threads_producer = malloc(sizeof(pthread_t) * thread_producer_count);
 	pthread_t* threads_consumer = malloc(sizeof(pthread_t) * thread_consumer_count);
@@ -85,12 +87,13 @@ int main(int argc, char **argv) {
    
     // Processing writer threads 
     for(int i = 0; i < thread_producer_count; i++) {
-        threads_producer[i] = start_producer_thread();
+        threads_producer[i] = start_producer_thread(i);
     }
 	
 	 // Processing writer threads 
     for(int i = 0; i < thread_consumer_count; i++) {
-        threads_consumer[i] = start_consumer_thread();
+		
+        threads_consumer[i] = start_consumer_thread(i);
     }
 
     

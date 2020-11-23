@@ -9,35 +9,6 @@ int PHILOSOPHES;
 //nb de fois qu'il mange et pense
 int PM_MAX = 10000;
 
-void my_sem_init(int* sem, int n)
-{
-	*sem = n;
-}
-
-void my_sem_wait(int* sem)
-{
-	asm(
-			"1:"
-			"movl %0, %%eax;"
-			"testl %%eax, %%eax;"    
-			"je 1b;"
-			"2:"
-			"decl %0;"    
-			:"=m"(*sem)
-			:"m"(*sem)
-			:"%eax"			
-		); 
-}
-
-void my_sem_post(int* sem)
-{
-	asm(
-			"incl %0;"
-			:"=m"(*sem)
-			:"m"(*sem)
-			:
-		); 
-}
 
 
 void my_mutex_init(int* mtx)
@@ -48,7 +19,7 @@ void my_mutex_init(int* mtx)
 
 void my_mutex_lock(int* mtx)
 {
-	asm(
+	asm volatile(
 			"1:"
 			"movl %0, %%eax;"
 			"testl %%eax, %%ebx;"    
@@ -66,7 +37,7 @@ void my_mutex_lock(int* mtx)
 
 void my_mutex_unlock(int* mtx)
 {
-	asm(
+	asm volatile(
 			"movl $0, %0;"
 			:"=m"(*mtx)
 			:"m"(*mtx)

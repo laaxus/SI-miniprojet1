@@ -25,4 +25,3 @@ pthread_t start_producer_thread();
  */
 pthread_t start_consumer_thread();
 
-void my_sem_post(int* sem);

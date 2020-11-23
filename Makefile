@@ -50,6 +50,15 @@ debug_ts: test_and_set/*
 debug_tts: test_and_test_and_set/*
 	cd test_and_test_and_set && $(CC) $(CFLAGS) -o ../debug_tts -g $(CODEFILES_TTS) main.c $(LIBS)
 	
+debug_rw2: reader_writer_2/*
+	cd reader_writer_2 && $(CC) $(CFLAGS) -o ../debug_rw2 -g $(CODEFILES_RW2) main.c $(LIBS)
+	
+debug_ph2: philosophe_2/*
+	cd philosophe_2 && $(CC) $(CFLAGS) -o ../debug_ph2 -g $(CODEFILES_PH2) main.c $(LIBS)
+	
+debug_pc2: producer_consumer_2/*
+	cd producer_consumer_2 && $(CC) $(CFLAGS) -o ../debug_pc2 -g $(CODEFILES_PC2) main.c $(LIBS)
+	
 doc: 
 	doxygen
 
@@ -67,4 +76,7 @@ clean:
 	rm -f debug_pc
 	rm -f debug_ts
 	rm -f debug_tts
+	rm -f debug_rw2 
+	rm -f debug_ph2
+	rm -f debug_pc2
 	rm -rf doc

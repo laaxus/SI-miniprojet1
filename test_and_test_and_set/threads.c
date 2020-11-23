@@ -16,7 +16,7 @@ void my_mutex_init(int* mtx)
 
 void my_mutex_lock(int* mtx)
 {
-	asm(
+	asm volatile(
 			"1:"
 			"movl %0, %%eax;"
 			"testl %%eax, %%ebx;"    
@@ -34,7 +34,7 @@ void my_mutex_lock(int* mtx)
 
 void my_mutex_unlock(int* mtx)
 {
-	asm(
+	asm volatile( 
 			"movl $0, %0;"
 			:"=m"(*mtx)
 			:"m"(*mtx)

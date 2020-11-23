@@ -40,7 +40,9 @@ void* producer_main() {
 		sem_wait(&empty); // attente d'une place libre
 		pthread_mutex_lock(&mutex);
 		
-
+		printf("producer %d\n",item_produced);
+		fflush(stdout);
+		
 		if(item_produced >= PRODUCED_MAX)
 		{
 			pthread_mutex_unlock(&mutex);
@@ -71,6 +73,9 @@ void* consumer_main() {
 		sem_wait(&full); // attente d'une place remplie
 		pthread_mutex_lock(&mutex);
 	
+	
+		printf("consumer %d\n",item_produced);
+		fflush(stdout);
 		if(item_consumed >= CONSUMED_MAX)
 		{
 			pthread_mutex_unlock(&mutex);
