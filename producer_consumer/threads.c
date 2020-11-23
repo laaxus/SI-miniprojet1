@@ -40,13 +40,13 @@ void* producer_main() {
 		sem_wait(&empty); // attente d'une place libre
 		pthread_mutex_lock(&mutex);
 		
-		printf("producer %d\n",item_produced);
-		fflush(stdout);
 		
 		if(item_produced >= PRODUCED_MAX)
 		{
 			pthread_mutex_unlock(&mutex);
-			sem_post(&full);
+			
+			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
+			sem_post(&empty);
 			return NULL; //stop production
 		}
 
@@ -60,6 +60,16 @@ void* producer_main() {
 			 }
 		 }
 		 item_produced++;
+		 
+		 if(item_produced >= PRODUCED_MAX)
+		{
+			pthread_mutex_unlock(&mutex);
+			sem_post(&full);
+			
+			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
+			sem_post(&empty);
+			return NULL; //stop production
+		}
 	
 		pthread_mutex_unlock(&mutex);
 		sem_post(&full); // il y a une place remplie en plus
@@ -73,13 +83,13 @@ void* consumer_main() {
 		sem_wait(&full); // attente d'une place remplie
 		pthread_mutex_lock(&mutex);
 	
-	
-		printf("consumer %d\n",item_produced);
-		fflush(stdout);
+
 		if(item_consumed >= CONSUMED_MAX)
 		{
 			pthread_mutex_unlock(&mutex);
-			sem_post(&empty);
+			
+			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
+			sem_post(&full);
 			return NULL; //stop consumption
 		}
 
@@ -95,6 +105,18 @@ void* consumer_main() {
 			 
 		//consuming
 		item_consumed++;
+		
+		if(item_consumed >= CONSUMED_MAX)
+		{
+			pthread_mutex_unlock(&mutex);
+			sem_post(&empty);
+			
+			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
+			sem_post(&full);
+			return NULL; //stop consumption
+		}
+		
+		
 		pthread_mutex_unlock(&mutex);
 		
 		//consuming item time simulation

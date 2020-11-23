@@ -1,106 +1,13 @@
 #include "threads.h"
+#include "mutex_sema.h"
 #include "stdio.h"
 
-typedef struct {
-	int count;
-	int lock;
-}sema;
 
-
-void my_sem_init(sema* sem, int n)
-{
-	(*sem).count = n;
-	(*sem).lock = 0;
-}
-
-void my_sem_wait(sema* sem)
-{
-	asm volatile(
-			"1:"
-			"movl %0, %%eax;"
-			"testl %%eax, %%eax;"    
-			"je 1b;"
-			"2:"
-			"movl $1, %%eax;"
-			"xchgl %%eax, %1;"
-			"testl %%eax, %%eax;"    
-			"jne 1b;"
-			"movl %0, %%eax;"
-			"testl %%eax, %%eax;" 
-			"jne 3f;"
-			"movl $0, %1;"
-			"je 1b;"
-			"3:"
-			"decl %0;"  
-			"movl $0, %1;"			
-			:"=m"((*sem).count),"=m"((*sem).lock)
-			:"m"((*sem).count),"m"((*sem).lock)
-			:"%eax","memory"			
-		); 
-}
-
-void my_sem_post(sema* sem)
-{
-	asm volatile(
-			"1:"
-			"movl %1, %%eax;"
-			"testl %%eax, %%eax;"    
-			"jne 1b;"
-			"2:"
-			"movl $1, %%eax;"
-			"xchgl %%eax, %1;"
-			"testl %%eax, %%eax;"    
-			"jne 1b;"
-			"incl %0;"  
-			"movl $0, %1;"			
-			:"=m"((*sem).count),"=m"((*sem).lock)
-			:"m"((*sem).count),"m"((*sem).lock)
-			:"%eax","memory"
-		); 
-}
-
-
-
-void my_mutex_init(int* mtx)
-{
-	*mtx = 0;
-}
-
-
-void my_mutex_lock(int* mtx)
-{
-	asm volatile(
-			"1:"
-			"movl %0, %%eax;"
-			"testl %%eax, %%ebx;"    
-			"jne 1b;"
-			"2:"
-			"movl $1, %%eax;"
-			"xchgl %%eax, %0;"
-			"testl %%eax, %%eax;"    
-			"jne 1b;"
-			:"=m"(*mtx)
-			:"m"(*mtx)
-			:"%eax"
-		); 
-}
-
-void my_mutex_unlock(int* mtx)
-{
-	asm volatile(
-			"movl $0, %0;"
-			:"=m"(*mtx)
-			:"m"(*mtx)
-			:
-		);
-}
-
-
-int mutex_readcount; 
-int mutex_writecount; 
-int mutex_z;
-sema sem_read;
-sema sem_write;
+volatile int mutex_readcount; 
+volatile int mutex_writecount; 
+volatile int mutex_z;
+volatile sema sem_read;
+volatile sema sem_write;
 
 int readcount=0; // nombre de readers
 int writecount=0;

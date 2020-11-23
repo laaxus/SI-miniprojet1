@@ -6,15 +6,15 @@
 int N;
 
 //home made mutex
-int mutex;
+volatile int mutex;
 
 
-void my_mutex_init(int* mtx)
+void my_mutex_init(volatile int* mtx)
 {
 	*mtx = 0;
 }
 
-void my_mutex_lock(int* mtx)
+void my_mutex_lock(volatile int* mtx)
 {
 	asm volatile(
 			"1:"
@@ -28,7 +28,7 @@ void my_mutex_lock(int* mtx)
 		); 
 }
 
-void my_mutex_unlock(int* mtx)
+void my_mutex_unlock(volatile int* mtx)
 {
 	asm volatile(
 			"movl $0, %0;"

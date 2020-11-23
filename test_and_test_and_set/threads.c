@@ -1,4 +1,5 @@
 #include "threads.h"
+#include "mutex_sema.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -6,41 +7,7 @@
 int N;
 
 //home made mutex
-int mutex;
-
-
-void my_mutex_init(int* mtx)
-{
-	*mtx = 0;
-}
-
-void my_mutex_lock(int* mtx)
-{
-	asm volatile(
-			"1:"
-			"movl %0, %%eax;"
-			"testl %%eax, %%ebx;"    
-			"jne 1b;"
-			"2:"
-			"movl $1, %%eax;"
-			"xchgl %%eax, %0;"
-			"testl %%eax, %%eax;"    
-			"jne 1b;"
-			:"=m"(*mtx)
-			:"m"(*mtx)
-			:"%eax"
-		); 
-}
-
-void my_mutex_unlock(int* mtx)
-{
-	asm volatile( 
-			"movl $0, %0;"
-			:"=m"(*mtx)
-			:"m"(*mtx)
-			:
-		);
-}
+volatile int mutex;
 
 void init_state(int nb) {
 	N = nb;

@@ -74,8 +74,7 @@ int main(int argc, char **argv) {
 	
 	//init semaphore
 	init_state();
-   
-   printf("P = %d, C = %d\n", thread_producer_count, thread_consumer_count);
+
    
     // Starts the processing
     pthread_t* threads_producer = malloc(sizeof(pthread_t) * thread_producer_count);
