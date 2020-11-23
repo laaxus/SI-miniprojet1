@@ -2,16 +2,10 @@
 
 
 
-<<<<<<< HEAD
 typedef struct {
 	int count;
 	int lock;
 }sema;
-=======
-//MAX
-int PRODUCED_MAX = 128;
-int CONSUMED_MAX = 128;
->>>>>>> a621400f966d9ce3d47aa69be3f6be97736d9288
 
 void my_sem_init( sema* sem, int n)
 {
@@ -116,8 +110,8 @@ int item_produced;
 int item_consumed;
 
 //MAX
-int PRODUCED_MAX = 100000;
-int CONSUMED_MAX = 100000;
+int PRODUCED_MAX = 100;
+int CONSUMED_MAX = 100;
 
 
 void init_state() {

@@ -105,8 +105,8 @@ sema sem_write;
 int readcount=0; // nombre de readers
 int writecount=0;
 
-int NBWRITING=2000;
-int NBREADING=10000;
+int NBWRITING=1280;
+int NBREADING=5120;
 
 int database = 0;
 
