@@ -1,107 +1,13 @@
 #include "threads.h"
-
-
-
-typedef struct {
-	int count;
-	int lock;
-}sema;
-
-void my_sem_init( sema* sem, int n)
-{
-	(*sem).count = n;
-	(*sem).lock = 0;
-}
-
-void my_sem_wait( sema* sem)
-{
-	asm volatile(
-			"1:"
-			"movl %0, %%eax;"
-			"testl %%eax, %%eax;"    
-			"je 1b;"
-			"2:"
-			"movl $1, %%eax;"
-			"xchgl %%eax, %1;"
-			"testl %%eax, %%eax;"    
-			"jne 1b;"
-			"movl %0, %%eax;"
-			"testl %%eax, %%eax;" 
-			"jne 3f;"
-			"movl $0, %1;"
-			"je 1b;"
-			"3:"
-			"decl %0;"  
-			"movl $0, %1;"			
-			:"=m"((*sem).count),"=m"((*sem).lock)
-			:"m"((*sem).count),"m"((*sem).lock)
-			:"%eax","memory"			
-		); 
-}
-
-void my_sem_post( sema* sem)
-{
-	asm volatile(
-			"1:"
-			"movl %1, %%eax;"
-			"testl %%eax, %%eax;"    
-			"jne 1b;"
-			"2:"
-			"movl $1, %%eax;"
-			"xchgl %%eax, %1;"
-			"testl %%eax, %%eax;"    
-			"jne 1b;"
-			"incl %0;"  
-			"movl $0, %1;"			
-			:"=m"((*sem).count),"=m"((*sem).lock)
-			:"m"((*sem).count),"m"((*sem).lock)
-			:"%eax","memory"
-		); 
-}
-
-
-void my_mutex_init( int* mtx)
-{
-	*mtx = 0;
-}
-
-
-void my_mutex_lock( int* mtx)
-{
-	asm volatile(
-			"1:"
-			"movl %0, %%eax;"
-			"testl %%eax, %%ebx;"    
-			"jne 1b;"
-			"2:"
-			"movl $1, %%eax;"
-			"xchgl %%eax, %0;"
-			"testl %%eax, %%eax;"    
-			"jne 1b;"
-			:"=m"(*mtx)
-			:"m"(*mtx)
-			:"%eax"
-		); 
-}
-
-void my_mutex_unlock( int* mtx)
-{
-	asm volatile(
-			"movl $0, %0;"
-			:"=m"(*mtx)
-			:"m"(*mtx)
-			:
-		);
-}
-
+#include "mutex_sema.h"
 
 int N;
 int db[8];
 
 //home made mutex and semaphore
-int mutex;
-sema empty;
-sema full;
+volatile int mutex;
+volatile sema empty;
+volatile sema full;
 
 //number of item produced
 int item_produced;
@@ -118,8 +24,7 @@ void init_state() {
 	N = 8;
 	for(int i = 0; i < N; i++)
 		db[i] = 0; 
-	
-	
+
 	my_mutex_init(&mutex);
 	my_sem_init(&empty, N);
 	my_sem_init(&full, 0);
@@ -138,14 +43,16 @@ void* producer_main() {
 		my_sem_wait(&empty); // attente d'une place libre
 		my_mutex_lock(&mutex);
 		
-		
 		if(item_produced >= PRODUCED_MAX)
 		{
+
 			my_mutex_unlock(&mutex);
-			my_sem_post(&full);
+			
+			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
+			my_sem_post(&empty);
 			return NULL; //stop production
 		}
-	
+		
 		 //insert item
 		 for(int i = 0; i < N; i++)
 		 {
@@ -156,10 +63,20 @@ void* producer_main() {
 			 }
 		 }
 		 item_produced++;
-		
+		 
+		 if(item_produced >= PRODUCED_MAX)
+		{
+
+			my_mutex_unlock(&mutex);
+			my_sem_post(&full);
+			
+			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
+			my_sem_post(&empty);
+			return NULL; //stop production
+		}
+		 
 		my_mutex_unlock(&mutex);
 		my_sem_post(&full); // il y a une place remplie en plus
-
 	}
 	return NULL;
 }
@@ -170,11 +87,12 @@ void* consumer_main() {
 		my_sem_wait(&full); // attente d'une place remplie
 		my_mutex_lock(&mutex);
 
-	
 		if(item_consumed >= CONSUMED_MAX)
 		{
 			my_mutex_unlock(&mutex);
-			my_sem_post(&empty);
+			
+			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
+			my_sem_post(&full);
 			return NULL; //stop consumption
 		}
 		
@@ -187,10 +105,19 @@ void* consumer_main() {
 				  break;
 			 }
 		 }
-			 
-		//consuming
+		 //consuming
 		item_consumed++;
-
+		
+		 if(item_consumed >= CONSUMED_MAX)
+		{
+			my_mutex_unlock(&mutex);
+			my_sem_post(&empty);
+			
+			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
+			my_sem_post(&full);
+			return NULL; //stop consumption
+		}
+			 
 		my_mutex_unlock(&mutex);
 
 		//consuming item time simulation

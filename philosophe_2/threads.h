@@ -8,7 +8,7 @@
 /**
  * \brief Array of mutex threads use
  */
-extern int* mtx;
+extern volatile int* mtx;
 
 /**
  * \brief Number of philosophe/threads

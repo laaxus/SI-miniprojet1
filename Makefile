@@ -4,11 +4,11 @@ LIBS=-lm -lpthread
 CODEFILES_RW=threads.c
 CODEFILES_PH=threads.c
 CODEFILES_PC=threads.c
-CODEFILES_TAS=threads.c
-CODEFILES_TTS=threads.c
-CODEFILES_RW2=threads.c
-CODEFILES_PH2=threads.c
-CODEFILES_PC2=threads.c
+CODEFILES_TS=threads.c
+CODEFILES_TTS=threads.c mutex_sema.c
+CODEFILES_RW2=threads.c mutex_sema.c
+CODEFILES_PH2=threads.c mutex_sema.c
+CODEFILES_PC2=threads.c mutex_sema.c
 
 rw: reader_writer/*
 	cd reader_writer && $(CC) $(CFLAGS) -o ../rw -O3 $(CODEFILES_RW) main.c $(LIBS)
@@ -20,7 +20,7 @@ pc: producer_consumer/*
 	cd producer_consumer && $(CC) $(CFLAGS) -o ../pc -O3 $(CODEFILES_PC) main.c $(LIBS)
 	
 ts: test_and_set/*
-	cd test_and_set && $(CC) $(CFLAGS) -o ../ts -O3 $(CODEFILES_TAS) main.c $(LIBS)
+	cd test_and_set && $(CC) $(CFLAGS) -o ../ts -O3 $(CODEFILES_TS) main.c $(LIBS)
 	
 tts: test_and_test_and_set/*
 	cd test_and_test_and_set && $(CC) $(CFLAGS) -o ../tts -O3 $(CODEFILES_TTS) main.c $(LIBS)
@@ -45,7 +45,7 @@ debug_pc: producer_consumer/*
 	cd producer_consumer && $(CC) $(CFLAGS) -o ../debug_pc -g $(CODEFILES_PC) main.c $(LIBS)
 	
 debug_ts: test_and_set/*
-	cd test_and_set && $(CC) $(CFLAGS) -o ../debug_ts -g $(CODEFILES_TAS) main.c $(LIBS)
+	cd test_and_set && $(CC) $(CFLAGS) -o ../debug_ts -g $(CODEFILES_TS) main.c $(LIBS)
 	
 debug_tts: test_and_test_and_set/*
 	cd test_and_test_and_set && $(CC) $(CFLAGS) -o ../debug_tts -g $(CODEFILES_TTS) main.c $(LIBS)

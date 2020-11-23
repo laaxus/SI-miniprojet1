@@ -6,6 +6,7 @@
 #include <windows.h>
 #endif
 #include "threads.h"
+#include "mutex_sema.h"
 
 
 
@@ -90,6 +91,8 @@ int main(int argc, char **argv) {
 
     // Frees resources
     free(threads);
+	
+	
 	
     return 0;
 }
