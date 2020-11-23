@@ -16,8 +16,8 @@ int item_produced;
 int item_consumed;
 
 //MAX
-int PRODUCED_MAX = 100;
-int CONSUMED_MAX = 100;
+int PRODUCED_MAX = 1024;
+int CONSUMED_MAX = 1024;
 
 
 void init_state() {

@@ -8,7 +8,7 @@ volatile int* mtx;
 int PHILOSOPHES;
 
 //nb de fois qu'il mange et pense
-int PM_MAX = 100;
+int PM_MAX = 1000000;
 
 void init_state(int nb) {
 	PHILOSOPHES = nb;
