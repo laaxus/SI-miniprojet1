@@ -11,8 +11,9 @@ directory as the files '.csv' grow one at a time."
     # $3 is the first MakeFile command argument
     # $4 is the second MakeFile command argument (optionnal)
     # /!\ à mettre -R ou -C dans $3, car ils sont prioritaires
-
+    
     create_csv() {
+    	
         echo "NB_THREADS,TIME_1,TIME_2,TIME_3,TIME_4,TIME_5" > ./Measures/"$1".csv
 
         for i in 1 2 3 4 5 6 7 8
@@ -21,7 +22,8 @@ directory as the files '.csv' grow one at a time."
             echo -n "$i" >> ./Measures/"$1".csv
             for j in 1 2 3 4 5
             do
-                
+                nb=$nb+1
+                progressbar $nb
                 make clean
                 make $2
                 
@@ -44,6 +46,7 @@ directory as the files '.csv' grow one at a time."
         done
     }
     
+
     create_csv MeasuresRW rw -R -W
     create_csv MeasuresPH ph -N
     create_csv MeasuresPC pc -C -P
@@ -53,6 +56,7 @@ directory as the files '.csv' grow one at a time."
     create_csv MeasuresPH2 ph2 -N
     create_csv MeasuresPC2 pc2 -C -P
     chmod +x graphing.py
+    make clean
 
 } &> /dev/null
 ./graphing.py
