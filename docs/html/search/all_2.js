@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mtx_2',['mtx',['../philosophe_2threads_8h.html#af533feaf39f498a40cfb29eb547b28fd',1,'threads.c']]]
+  ['mtx_2',['mtx',['../philosophe_2threads_8h.html#af533feaf39f498a40cfb29eb547b28fd',1,'mtx():&#160;threads.c'],['../philosophe__2_2threads_8h.html#afb08e77d033a18486449725f2e5db34b',1,'mtx():&#160;threads.c']]]
 ];
