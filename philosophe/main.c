@@ -70,14 +70,16 @@ int main(int argc, char **argv) {
 	
     // Starts the processing
     pthread_t* threads= malloc(sizeof(pthread_t) * thread_philo_count);
-    if (threads == NULL){
+    int* id = malloc(sizeof(int) * thread_philo_count);
+    if (threads == NULL || id == NULL){
         exit(1);
     }
 
    
     // Processing threads 
     for(int i = 0; i < thread_philo_count; i++) {
-        threads[i] = start_philo_thread(i);
+    	id[i] = i;
+        threads[i] = start_philo_thread(&id[i]);
     }
 	
 

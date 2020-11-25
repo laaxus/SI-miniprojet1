@@ -25,9 +25,9 @@ void init_state(int nb) {
 
 
 void* philo_main(void* arg) {
-	 int *id = (int *) arg;
-	 int left = *id;
+	 int left = *((int*)arg);
 	 int right = (left + 1) % PHILOSOPHES;
+	 
 	 for(int i = 0; i < PM_MAX;i++)
 	{
 	 // philosophe pense
@@ -61,9 +61,9 @@ void* philo_main(void* arg) {
 }
 
 
-pthread_t start_philo_thread(int arg) {
+pthread_t start_philo_thread(void* arg) {
     pthread_t th;
-    pthread_create(&th, NULL, philo_main, &arg);
+    pthread_create(&th, NULL, philo_main, arg);
     return th;
 }
 

@@ -29,6 +29,6 @@ void destroy_state();
  * \brief Starts a philosophe thread.
  * \return The pthread_t object associated with the created thread.
  */
-pthread_t start_philo_thread(int arg);
+pthread_t start_philo_thread(void* arg);
 
  

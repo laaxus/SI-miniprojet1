@@ -67,9 +67,9 @@ void* philo_main(void* arg) {
 }
 
 
-pthread_t start_philo_thread(int arg) {
+pthread_t start_philo_thread(void* arg) {
     pthread_t th;
-    pthread_create(&th, NULL, philo_main, &arg);
+    pthread_create(&th, NULL, philo_main, arg);
     return th;
 }
 
