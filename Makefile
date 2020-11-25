@@ -33,7 +33,9 @@ ph2: philosophe_2/*
 	
 pc2: producer_consumer_2/*
 	cd producer_consumer_2 && $(CC) $(CFLAGS) -o ../pc2 -O3 $(CODEFILES_PC2) main.c $(LIBS)
-    
+
+test:
+	./script.sh
 
 debug_rw: reader_writer/*
 	cd reader_writer && $(CC) $(CFLAGS) -o ../debug_rw -g $(CODEFILES_RW) main.c $(LIBS)
