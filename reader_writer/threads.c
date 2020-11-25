@@ -68,7 +68,7 @@ void* reader_main() {
 		pthread_mutex_unlock(&mutex_z);
 
 		//read database
-		int foo = database;
+		//int foo = database;
 
 		pthread_mutex_lock(&mutex_readcount);
 		// section critique
