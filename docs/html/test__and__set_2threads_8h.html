@@ -80,29 +80,30 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a5c20d18553e54dd4e3bfa8fb498d4645"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test__and__set_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">init_state</a> (int thread_count)</td></tr>
-<tr class="memdesc:a5c20d18553e54dd4e3bfa8fb498d4645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the lock, <a class="el" href="test__and__test__and__set_2threads_8h.html#a7722c8ecbb62d99aee7ce68b1752f337">N</a>,the state required for the threads to function properly.  <a href="test__and__set_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">More...</a><br /></td></tr>
+<tr class="memdesc:a5c20d18553e54dd4e3bfa8fb498d4645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the lock, <a class="el" href="test__and__test__and__set_2threads_8h.html#a7722c8ecbb62d99aee7ce68b1752f337">N</a>, the state required for the threads to function properly.  <a href="test__and__set_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">More...</a><br /></td></tr>
 <tr class="separator:a5c20d18553e54dd4e3bfa8fb498d4645"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6748af86f60277ab8cfdb32e4bb3355a"><td class="memItemLeft" align="right" valign="top"><a id="a6748af86f60277ab8cfdb32e4bb3355a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test__and__set_2threads_8h.html#a6748af86f60277ab8cfdb32e4bb3355a">destroy_state</a> ()</td></tr>
-<tr class="memdesc:a6748af86f60277ab8cfdb32e4bb3355a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the state that was initialized by <a class="el" href="test__and__test__and__set_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">init_state</a>. <br /></td></tr>
-<tr class="separator:a6748af86f60277ab8cfdb32e4bb3355a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c2b6afcd26994c450be7111a73d1230"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test__and__set_2threads_8h.html#a5c2b6afcd26994c450be7111a73d1230">start_thread</a> ()</td></tr>
 <tr class="memdesc:a5c2b6afcd26994c450be7111a73d1230"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a thread.  <a href="test__and__set_2threads_8h.html#a5c2b6afcd26994c450be7111a73d1230">More...</a><br /></td></tr>
 <tr class="separator:a5c2b6afcd26994c450be7111a73d1230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f4013714bfba8ed288c0e44cc15d4d4"><td class="memItemLeft" align="right" valign="top"><a id="a1f4013714bfba8ed288c0e44cc15d4d4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>my_mutex_init</b> (volatile int *mutex)</td></tr>
+<tr class="separator:a1f4013714bfba8ed288c0e44cc15d4d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e6e6aef912d98c3922e93f7a678dd2"><td class="memItemLeft" align="right" valign="top"><a id="a10e6e6aef912d98c3922e93f7a678dd2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>my_mutex_lock</b> (volatile int *mutex)</td></tr>
+<tr class="separator:a10e6e6aef912d98c3922e93f7a678dd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5da24f9cc54b63bc3de67b84744133f"><td class="memItemLeft" align="right" valign="top"><a id="aa5da24f9cc54b63bc3de67b84744133f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>my_mutex_unlock</b> (volatile int *mutex)</td></tr>
+<tr class="separator:aa5da24f9cc54b63bc3de67b84744133f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:af533feaf39f498a40cfb29eb547b28fd"><td class="memItemLeft" align="right" valign="top"><a id="af533feaf39f498a40cfb29eb547b28fd"></a>
-pthread_mutex_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test__and__set_2threads_8h.html#af533feaf39f498a40cfb29eb547b28fd">mtx</a></td></tr>
-<tr class="memdesc:af533feaf39f498a40cfb29eb547b28fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of mutex threads use. <br /></td></tr>
-<tr class="separator:af533feaf39f498a40cfb29eb547b28fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7722c8ecbb62d99aee7ce68b1752f337"><td class="memItemLeft" align="right" valign="top"><a id="a7722c8ecbb62d99aee7ce68b1752f337"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test__and__set_2threads_8h.html#a7722c8ecbb62d99aee7ce68b1752f337">N</a></td></tr>
 <tr class="memdesc:a7722c8ecbb62d99aee7ce68b1752f337"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of threads. <br /></td></tr>
 <tr class="separator:a7722c8ecbb62d99aee7ce68b1752f337"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The different threads of the program. </p>
+<div class="textblock"><p>The thread of the program. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a5c20d18553e54dd4e3bfa8fb498d4645"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5c20d18553e54dd4e3bfa8fb498d4645">&#9670;&nbsp;</a></span>init_state()</h2>
@@ -120,8 +121,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="test_
       </table>
 </div><div class="memdoc">
 
-<p>Initializes the lock, <a class="el" href="test__and__test__and__set_2threads_8h.html#a7722c8ecbb62d99aee7ce68b1752f337">N</a>,the state required for the threads to function properly. </p>
-<p>Initializes the lock, <a class="el" href="test__and__test__and__set_2threads_8h.html#a7722c8ecbb62d99aee7ce68b1752f337">N</a>,the state required for the threads to function properly. </p>
+<p>Initializes the lock, <a class="el" href="test__and__test__and__set_2threads_8h.html#a7722c8ecbb62d99aee7ce68b1752f337">N</a>, the state required for the threads to function properly. </p>
+<p>Initializes the lock, <a class="el" href="test__and__test__and__set_2threads_8h.html#a7722c8ecbb62d99aee7ce68b1752f337">N</a>, the state required for the threads to function properly. </p>
 
 </div>
 </div>
