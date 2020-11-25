@@ -2,8 +2,8 @@ var indexSectionsWithContent =
 {
   0: "dimnpst",
   1: "s",
-  2: "t",
-  3: "dis",
+  2: "mt",
+  3: "dims",
   4: "mnp",
   5: "p"
 };
