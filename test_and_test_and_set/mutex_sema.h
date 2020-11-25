@@ -1,5 +1,5 @@
-/** \file threads.h
- * The thread of the program.
+/** \file mutex_sema.h
+ * Home made semaphore and mutex
  */
 #pragma once
 
