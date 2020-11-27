@@ -1,8 +1,10 @@
 #!/bin/bash
-echo "\nWarning! This execution might take up to 5 mins, 
+echo "
+Warning! This execution might take up to 5 mins, 
 as it tries to gather significant data for all algorithms.
 Once it is done, you will see the graphs appear, and they
-will be saved in the 'Measures' directory.\n"
+will be saved in the 'Measures' directory.
+"
 nb=0
 
 function progressbar() {
