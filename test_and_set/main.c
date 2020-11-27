@@ -14,8 +14,7 @@ const char* help_string =
     "\n"
     " -N NUMBER_OF_THREADS             Specify how many threads the program should use.\n"
     "                      		       The argument should be a positive integer.\n"
-    "                                  By default, the program will use all available\n"
-    "                     		       cores on the machine.\n";
+    "                                  By default, the program will use 1 thread.";
    
 
 // Prints the help string and exits with an error code.
@@ -58,9 +57,9 @@ int main(int argc, char **argv) {
 
 
 	
-    // If the number of threads was not specified for writers, then uses 1 core
+    // If the number of threads was not specified for writers, then uses 1 thread.
     if(thread_count == 0) {
-        thread_count = get_available_cpus();
+        thread_count =1;
     }
 	
 	

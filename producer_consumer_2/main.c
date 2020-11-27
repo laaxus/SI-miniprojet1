@@ -62,14 +62,14 @@ int main(int argc, char **argv) {
         }
     } 
 	
-    // If the number of threads was not specified for writers, then uses 1 core
+    // If the number of threads was not specified for writers, then uses 1 thread.
     if(thread_producer_count == 0) {
-        thread_producer_count = 2;
+        thread_producer_count = 1;
     }
 	
-	// If the number of threads was not specified for readers, then uses all available cores
+	// If the number of threads was not specified for readers, then uses 1 thread.
     if(thread_consumer_count == 0) {
-        thread_consumer_count = 2;
+        thread_consumer_count = 1;
     }
 	
 	//init semaphore

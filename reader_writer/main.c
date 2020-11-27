@@ -18,8 +18,7 @@ const char* help_string =
 	"\n"
     " -R NUMBER_OF_READER_THREADS  Specify how many threads the program should use for readers.\n"
     "                      		   The argument should be a positive integer.\n"
-    "                              By default, the program will use all available\n"
-    "                     		   cores on the machine.\n";
+    "                              By default, the program will use 1 thread for readers\n";
 
 // Prints the help string and exits with an error code.
 void print_usage() {
@@ -66,16 +65,14 @@ int main(int argc, char **argv) {
 
    
 
-    // If the number of threads was not specified for writers, then uses 1 core
+    // If the number of threads was not specified for writers, then uses 1 thread.
     if(thread_writer_count == 0) {
         thread_writer_count = 1;
     }
 	
-	// If the number of threads was not specified for readers, then uses all available cores
+	// If the number of threads was not specified for readers, then uses 1 thread.
     if(thread_reader_count == 0) {
-        thread_reader_count = get_available_cpus() - thread_writer_count;
-		if(thread_reader_count <= 0)
-			thread_reader_count = 1;
+        thread_reader_count = 1;
     }
 	
 	//init semaphore
