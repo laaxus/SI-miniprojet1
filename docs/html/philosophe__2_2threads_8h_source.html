@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet LINFO1252: producer_consumer/threads.h Source File</title>
+<title>Projet LINFO1252: philosophe_2/threads.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e20849253a72ff14401de9932fc17a45.html">producer_consumer</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_443aea65152bb2a822d5451fff6e16e7.html">philosophe_2</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -69,23 +69,26 @@ $(function() {
 <div class="title">threads.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="producer__consumer_2threads_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<a href="philosophe__2_2threads_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;pthread.h&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;semaphore.h&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> <a class="code" href="philosophe_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">init_state</a>();</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;pthread_t <a class="code" href="producer__consumer_2threads_8h.html#a812133ddf6b7c605e35e50f3613b153b">start_producer_thread</a>();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;pthread_t <a class="code" href="producer__consumer_2threads_8h.html#a30cc558d09f565e361f4fd60b471e614">start_consumer_thread</a>();</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">extern</span> <span class="keyword">volatile</span> <span class="keywordtype">int</span>* <a class="code" href="philosophe_2threads_8h.html#af533feaf39f498a40cfb29eb547b28fd">mtx</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="philosophe_2threads_8h.html#ae4c7a034151e40cdc9f2c98b55034522">PHILOSOPHES</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="philosophe_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">init_state</a>(<span class="keywordtype">int</span> thread_count);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;pthread_t <a class="code" href="philosophe_2threads_8h.html#a5ecab8888156ea933b996b88b8c40306">start_philo_thread</a>(<span class="keywordtype">void</span>* arg);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aphilosophe_2threads_8h_html_a5ecab8888156ea933b996b88b8c40306"><div class="ttname"><a href="philosophe_2threads_8h.html#a5ecab8888156ea933b996b88b8c40306">start_philo_thread</a></div><div class="ttdeci">pthread_t start_philo_thread(void *arg)</div><div class="ttdoc">Starts a philosophe thread.</div><div class="ttdef"><b>Definition:</b> threads.c:70</div></div>
 <div class="ttc" id="aphilosophe_2threads_8h_html_a5c20d18553e54dd4e3bfa8fb498d4645"><div class="ttname"><a href="philosophe_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">init_state</a></div><div class="ttdeci">void init_state(int thread_count)</div><div class="ttdoc">Initializes mtx, PHILOSOPHES, the state required for the threads to function properly.</div><div class="ttdef"><b>Definition:</b> threads.c:12</div></div>
-<div class="ttc" id="aproducer__consumer_2threads_8h_html_a812133ddf6b7c605e35e50f3613b153b"><div class="ttname"><a href="producer__consumer_2threads_8h.html#a812133ddf6b7c605e35e50f3613b153b">start_producer_thread</a></div><div class="ttdeci">pthread_t start_producer_thread()</div><div class="ttdoc">Starts a producer thread.</div><div class="ttdef"><b>Definition:</b> threads.c:130</div></div>
-<div class="ttc" id="aproducer__consumer_2threads_8h_html_a30cc558d09f565e361f4fd60b471e614"><div class="ttname"><a href="producer__consumer_2threads_8h.html#a30cc558d09f565e361f4fd60b471e614">start_consumer_thread</a></div><div class="ttdeci">pthread_t start_consumer_thread()</div><div class="ttdoc">Starts a consumer thread.</div><div class="ttdef"><b>Definition:</b> threads.c:136</div></div>
+<div class="ttc" id="aphilosophe_2threads_8h_html_ae4c7a034151e40cdc9f2c98b55034522"><div class="ttname"><a href="philosophe_2threads_8h.html#ae4c7a034151e40cdc9f2c98b55034522">PHILOSOPHES</a></div><div class="ttdeci">int PHILOSOPHES</div><div class="ttdoc">Number of philosophe/threads.</div><div class="ttdef"><b>Definition:</b> threads.c:7</div></div>
+<div class="ttc" id="aphilosophe_2threads_8h_html_af533feaf39f498a40cfb29eb547b28fd"><div class="ttname"><a href="philosophe_2threads_8h.html#af533feaf39f498a40cfb29eb547b28fd">mtx</a></div><div class="ttdeci">pthread_mutex_t * mtx</div><div class="ttdoc">Array of mutex threads use.</div><div class="ttdef"><b>Definition:</b> threads.c:5</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20

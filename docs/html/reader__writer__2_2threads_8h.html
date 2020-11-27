@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projet LINFO1252: reader_writer/threads.h File Reference</title>
+<title>Projet LINFO1252: reader_writer_2/threads.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_e432057fa1c149d7104ccf7f25ff6564.html">reader_writer</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_df31857329dd77128a3f75ea86ede8b9.html">reader_writer_2</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -74,24 +74,44 @@ $(function() {
 <div class="textblock"><code>#include &lt;pthread.h&gt;</code><br />
 <code>#include &lt;semaphore.h&gt;</code><br />
 </div>
-<p><a href="reader__writer_2threads_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="reader__writer__2_2threads_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a684accf6a94edb6102f4bb0e8a5731fb"><td class="memItemLeft" align="right" valign="top"><a id="a684accf6a94edb6102f4bb0e8a5731fb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader__writer_2threads_8h.html#a684accf6a94edb6102f4bb0e8a5731fb">init_state</a> ()</td></tr>
-<tr class="memdesc:a684accf6a94edb6102f4bb0e8a5731fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the semaphores required for the threads to function properly. <br /></td></tr>
+<tr class="memitem:a684accf6a94edb6102f4bb0e8a5731fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader__writer__2_2threads_8h.html#a684accf6a94edb6102f4bb0e8a5731fb">init_state</a> ()</td></tr>
+<tr class="memdesc:a684accf6a94edb6102f4bb0e8a5731fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the semaphores required for the threads to function properly.  <a href="reader__writer__2_2threads_8h.html#a684accf6a94edb6102f4bb0e8a5731fb">More...</a><br /></td></tr>
 <tr class="separator:a684accf6a94edb6102f4bb0e8a5731fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7342636e1b19c4873d55cec87dbcc3d"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader__writer_2threads_8h.html#ac7342636e1b19c4873d55cec87dbcc3d">start_writer_thread</a> ()</td></tr>
-<tr class="memdesc:ac7342636e1b19c4873d55cec87dbcc3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a writer thread.  <a href="reader__writer_2threads_8h.html#ac7342636e1b19c4873d55cec87dbcc3d">More...</a><br /></td></tr>
+<tr class="memitem:ac7342636e1b19c4873d55cec87dbcc3d"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader__writer__2_2threads_8h.html#ac7342636e1b19c4873d55cec87dbcc3d">start_writer_thread</a> ()</td></tr>
+<tr class="memdesc:ac7342636e1b19c4873d55cec87dbcc3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a writer thread.  <a href="reader__writer__2_2threads_8h.html#ac7342636e1b19c4873d55cec87dbcc3d">More...</a><br /></td></tr>
 <tr class="separator:ac7342636e1b19c4873d55cec87dbcc3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb0e0f0b8dbadc6bf744a43e2b882a8c"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader__writer_2threads_8h.html#afb0e0f0b8dbadc6bf744a43e2b882a8c">start_reader_thread</a> ()</td></tr>
-<tr class="memdesc:afb0e0f0b8dbadc6bf744a43e2b882a8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a reader thread.  <a href="reader__writer_2threads_8h.html#afb0e0f0b8dbadc6bf744a43e2b882a8c">More...</a><br /></td></tr>
+<tr class="memitem:afb0e0f0b8dbadc6bf744a43e2b882a8c"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reader__writer__2_2threads_8h.html#afb0e0f0b8dbadc6bf744a43e2b882a8c">start_reader_thread</a> ()</td></tr>
+<tr class="memdesc:afb0e0f0b8dbadc6bf744a43e2b882a8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a reader thread.  <a href="reader__writer__2_2threads_8h.html#afb0e0f0b8dbadc6bf744a43e2b882a8c">More...</a><br /></td></tr>
 <tr class="separator:afb0e0f0b8dbadc6bf744a43e2b882a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The different threads of the program. <a class="el" href="test__and__test__and__set_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">init_state</a> must be called before using any functionality provided by this header. </p>
+<div class="textblock"><p>The thread of the program.</p>
+<p>The different threads of the program. <a class="el" href="test__and__test__and__set_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">init_state</a> must be called before using any functionality provided by this header. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a684accf6a94edb6102f4bb0e8a5731fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a684accf6a94edb6102f4bb0e8a5731fb">&#9670;&nbsp;</a></span>init_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_state </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the semaphores required for the threads to function properly. </p>
+<p>Initializes the semaphores and mutex required for the threads to function properly. </p>
+
+</div>
+</div>
 <a id="afb0e0f0b8dbadc6bf744a43e2b882a8c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afb0e0f0b8dbadc6bf744a43e2b882a8c">&#9670;&nbsp;</a></span>start_reader_thread()</h2>
 

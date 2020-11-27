@@ -81,15 +81,15 @@ $(function() {
 Functions</h2></td></tr>
 <tr class="memitem:a5c20d18553e54dd4e3bfa8fb498d4645"><td class="memItemLeft" align="right" valign="top"><a id="a5c20d18553e54dd4e3bfa8fb498d4645"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="philosophe_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">init_state</a> (int thread_count)</td></tr>
-<tr class="memdesc:a5c20d18553e54dd4e3bfa8fb498d4645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes <a class="el" href="test__and__test__and__set_2threads_8h.html#af533feaf39f498a40cfb29eb547b28fd">mtx</a>, <a class="el" href="philosophe_2threads_8h.html#ae4c7a034151e40cdc9f2c98b55034522">PHILOSOPHES</a>,the state required for the threads to function properly. <br /></td></tr>
+<tr class="memdesc:a5c20d18553e54dd4e3bfa8fb498d4645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes <a class="el" href="philosophe__2_2threads_8h.html#afb08e77d033a18486449725f2e5db34b">mtx</a>, <a class="el" href="philosophe__2_2threads_8h.html#ae4c7a034151e40cdc9f2c98b55034522">PHILOSOPHES</a>, the state required for the threads to function properly. <br /></td></tr>
 <tr class="separator:a5c20d18553e54dd4e3bfa8fb498d4645"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6748af86f60277ab8cfdb32e4bb3355a"><td class="memItemLeft" align="right" valign="top"><a id="a6748af86f60277ab8cfdb32e4bb3355a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="philosophe_2threads_8h.html#a6748af86f60277ab8cfdb32e4bb3355a">destroy_state</a> ()</td></tr>
 <tr class="memdesc:a6748af86f60277ab8cfdb32e4bb3355a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the state that was initialized by <a class="el" href="test__and__test__and__set_2threads_8h.html#a5c20d18553e54dd4e3bfa8fb498d4645">init_state</a>. <br /></td></tr>
 <tr class="separator:a6748af86f60277ab8cfdb32e4bb3355a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2efc1cbef3f84a7f0a1137b12557e49"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="philosophe_2threads_8h.html#ae2efc1cbef3f84a7f0a1137b12557e49">start_philo_thread</a> (int arg)</td></tr>
-<tr class="memdesc:ae2efc1cbef3f84a7f0a1137b12557e49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a philosophe thread.  <a href="philosophe_2threads_8h.html#ae2efc1cbef3f84a7f0a1137b12557e49">More...</a><br /></td></tr>
-<tr class="separator:ae2efc1cbef3f84a7f0a1137b12557e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ecab8888156ea933b996b88b8c40306"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="philosophe_2threads_8h.html#a5ecab8888156ea933b996b88b8c40306">start_philo_thread</a> (void *arg)</td></tr>
+<tr class="memdesc:a5ecab8888156ea933b996b88b8c40306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a philosophe thread.  <a href="philosophe_2threads_8h.html#a5ecab8888156ea933b996b88b8c40306">More...</a><br /></td></tr>
+<tr class="separator:a5ecab8888156ea933b996b88b8c40306"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -105,8 +105,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="philo
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The different threads of the program. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ae2efc1cbef3f84a7f0a1137b12557e49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2efc1cbef3f84a7f0a1137b12557e49">&#9670;&nbsp;</a></span>start_philo_thread()</h2>
+<a id="a5ecab8888156ea933b996b88b8c40306"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ecab8888156ea933b996b88b8c40306">&#9670;&nbsp;</a></span>start_philo_thread()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -114,7 +114,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="philo
         <tr>
           <td class="memname">pthread_t start_philo_thread </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>arg</em></td><td>)</td>
           <td></td>
         </tr>
