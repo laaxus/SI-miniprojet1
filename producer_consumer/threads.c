@@ -51,14 +51,7 @@ void* producer_main() {
 		}
 
 		 //insert item
-		 for(int i = 0; i < N; i++)
-		 {
-			 if(db[i] == 0)
-			 {
-				  db[i] = 1;
-				  break;
-			 }
-		 }
+		 db[item_produced % 8] = 1;
 		 item_produced++;
 		 
 		 if(item_produced >= PRODUCED_MAX)
@@ -94,14 +87,7 @@ void* consumer_main() {
 		}
 
 		//consume item
-		 for(int i = 0; i < N; i++)
-		 {
-			 if(db[i] == 1)
-			 {
-				  db[i] = 0;
-				  break;
-			 }
-		 }
+		 db[item_consumed % 8] = 0;
 			 
 		//consuming
 		item_consumed++;
