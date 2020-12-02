@@ -1,4 +1,5 @@
 #include "threads.h"
+#include "math.h"
 
 int N;
 int db[8];
@@ -23,11 +24,22 @@ void init_state() {
 	for(int i = 0; i < N; i++)
 		db[i] = 0; 
 	
+	srand(0);
 	pthread_mutex_init(&mutex,NULL);
 	sem_init(&empty, 0, N);
 	sem_init(&full, 0, 0);
 	item_produced = 0;
 	item_consumed = 0;
+}
+
+int gen_random_int() { // Source :  https://stackoverflow.com/questions/32773855/random-number-between-int-max-int-min
+    const int BITS_PER_RAND = (int)(log2(RAND_MAX/2 + 1) + 1.0); 
+    int ret = 0;
+    for (int i = 0; i < sizeof(int) * CHAR_BIT; i += BITS_PER_RAND) {
+        ret <<= BITS_PER_RAND;
+        ret |= rand();
+    }
+    return ret;
 }
 
 void* producer_main() {
@@ -51,7 +63,7 @@ void* producer_main() {
 		}
 
 		 //insert item
-		 db[item_produced % 8] = 1;
+		 db[item_produced % 8] = gen_random_int();
 		 item_produced++;
 		 
 		 if(item_produced >= PRODUCED_MAX)
