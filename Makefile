@@ -38,13 +38,13 @@ pc2: producer_consumer_tts/*
 	cd producer_consumer_tts && $(CC) $(CFLAGS) -o ../pc2 -O3 $(CODEFILES_PC2) main.c $(LIBS)
 	
 rw3: reader_writer_ts/*
-	cd reader_writer_tts && $(CC) $(CFLAGS) -o ../rw3 -O3 $(CODEFILES_RW3) main.c $(LIBS)
+	cd reader_writer_ts && $(CC) $(CFLAGS) -o ../rw3 -O3 $(CODEFILES_RW3) main.c $(LIBS)
 	
 ph3: philosophe_ts/*
-	cd philosophe_tts && $(CC) $(CFLAGS) -o ../ph3 -O3 $(CODEFILES_PH3) main.c $(LIBS)
+	cd philosophe_ts && $(CC) $(CFLAGS) -o ../ph3 -O3 $(CODEFILES_PH3) main.c $(LIBS)
 	
 pc3: producer_consumer_ts/*
-	cd producer_consumer_tts && $(CC) $(CFLAGS) -o ../pc3 -O3 $(CODEFILES_PC3) main.c $(LIBS)
+	cd producer_consumer_ts && $(CC) $(CFLAGS) -o ../pc3 -O3 $(CODEFILES_PC3) main.c $(LIBS)
 
 test:
 	./script.sh
