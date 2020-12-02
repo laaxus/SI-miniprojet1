@@ -1,6 +1,7 @@
 #include "threads.h"
 #include "mutex_sema.h"
 #include "math.h"
+#include "limits.h"
 
 int N;
 int db[8];

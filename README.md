@@ -32,19 +32,27 @@ Par défault, ils utiliseront autant de threads que la machine a de coeurs.
 
 ## Compilation
 Nous proposons les règles suivantes pour les sous projets :
-* `rw`, pour le reader-writer; 
-* `ph`, pour les philosophes;
-* `pc`, pour le producer_consumer;
+* `rw`, pour le reader-writer avec version posix; 
+* `ph`, pour les philosophes avec version posix;
+* `pc`, pour le producer_consumer avec version posix;
 * `ts`, pour le test and set;
 * `tts`, pour le test and test and set.
+* `rw2`, pour le reader-writer avec version test and test and set; 
+* `ph2`, pour les philosophes avec version test and test and set; 
+* `pc2`, pour le producer_consumer avec version test and test and set; 
+* `rw3`, pour le reader-writer avec version test and set; 
+* `ph3`, pour les philosophes avec version test and set; 
+* `pc3`, pour le producer_consumer avec version test and set; 
  
 `clean` nettoye les artéfacts de compilation. 
+
+`test` lance le script bash pour créer les mesures et leur graphe correspondant.
 
 Nous proposons aussi la règle `debug_("Une des règles de sous_projet")` permettant de créer un build sans optimisations et avec l'option `-g`.
 Afin de pouvoir compiler, il est nécessaire d'avoir le compilateur GCC ainsi que les libraires pthread.
 Il est aussi nécessaire que le système supporte l'interface POSIX `getopt`.
 
 La documentation peut être générée à l'aide de `make doc` pour peu que Doxygen soit installé. Il faut ensuite ouvrir le fichier `index.html` dans le dossier docs. 
-Si Doxygen n'est pas installé, vous pouvez quoi qu'il arrive la trouver sur [Github Pages](https://laaxus.github.io/SI-miniprojet1/html/index.html).
+Si Doxygen n'est pas installé, vous pouvez quoi qu'il arrive trouver la doc sur [Github Pages](https://laaxus.github.io/SI-miniprojet1/html/index.html).
 
 

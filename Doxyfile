@@ -829,7 +829,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = philosophe reader_writer producer_consumer philosophe_2 reader_writer_2 producer_consumer_2 test_and_set test_and_test_and_set README.md
+INPUT                  = philosophe reader_writer producer_consumer philosophe_ts reader_writer_ts producer_consumer_ts philosophe_tts reader_writer_tts producer_consumer_tts test_and_set test_and_test_and_set README.md
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses

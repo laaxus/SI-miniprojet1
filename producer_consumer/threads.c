@@ -1,5 +1,6 @@
 #include "threads.h"
 #include "math.h"
+#include "limits.h"
 
 int N;
 int db[8];
