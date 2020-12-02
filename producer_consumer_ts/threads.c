@@ -112,7 +112,7 @@ void* consumer_main() {
 			my_sem_post_ts(&empty);
 			
 			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
-			my_sem_post(&full);
+			my_sem_post_ts(&full);
 			return NULL; //stop consumption
 		}
 			 
