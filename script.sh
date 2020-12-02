@@ -61,19 +61,19 @@ create_csv() {
     
 
 # /!\ insérer ici le nombre d'appel à create_csv
-nbOfFunc=11
+nbOfFunc=2
 ((nbOfFunc = nbOfFunc*40))
 
-create_csv MeasuresRW rw -R -W 
-create_csv MeasuresPH ph -N
-create_csv MeasuresPC pc -C -P
-create_csv MeasuresTS ts -N
-create_csv MeasuresTTS tts -N
-create_csv MeasuresRW2 rw2 -R -W
-create_csv MeasuresPH2 ph2 -N
-create_csv MeasuresPC2 pc2 -C -P
+#create_csv MeasuresRW rw -R -W 
+#create_csv MeasuresPH ph -N
+#create_csv MeasuresPC pc -C -P
+#create_csv MeasuresTS ts -N
+#create_csv MeasuresTTS tts -N
+#create_csv MeasuresRW2 rw2 -R -W
+#create_csv MeasuresPH2 ph2 -N
+#create_csv MeasuresPC2 pc2 -C -P
 create_csv MeasuresRW3 rw3 -R -W
-create_csv MeasuresPH3 ph3 -N
+#create_csv MeasuresPH3 ph3 -N
 create_csv MeasuresPC3 pc3 -C -P
 printf '\nFinished!\n'
 {
