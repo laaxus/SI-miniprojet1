@@ -18,7 +18,7 @@ void init_state(int nb) {
 		exit(1);
 	
 	for(int i = 0; i < nb;i++)
-		my_mutex_init(&mtx[i]);
+		my_mutex_init_ts(&mtx[i]);
 		
 }
 
@@ -32,18 +32,18 @@ void* philo_main(void* arg) {
 	{
 	 // philosophe pense
 		 if(left<right) {
-			my_mutex_lock(&mtx[left]);
-			my_mutex_lock(&mtx[right]);
+			my_mutex_lock_ts(&mtx[left]);
+			my_mutex_lock_ts(&mtx[right]);
 		 }
 		 else {
 		 
 			 if(left != right)// N > 1
 			 {
-				my_mutex_lock(&mtx[right]);
-				my_mutex_lock(&mtx[left]);
+				my_mutex_lock_ts(&mtx[right]);
+				my_mutex_lock_ts(&mtx[left]);
 			 }
 			 else // N == 1
-				my_mutex_lock(&mtx[left]);
+				my_mutex_lock_ts(&mtx[left]);
 		 }
 		 
 		 //mange
@@ -51,11 +51,11 @@ void* philo_main(void* arg) {
 		 //il a plus faim
 		 if(left != right)// N > 1
 		 {
-			my_mutex_unlock(&mtx[left]);
-			my_mutex_unlock(&mtx[right]);
+			my_mutex_unlock_ts(&mtx[left]);
+			my_mutex_unlock_ts(&mtx[right]);
 		 }
 		 else // N == 1
-			my_mutex_unlock(&mtx[left]);
+			my_mutex_unlock_ts(&mtx[left]);
 	 }
  return NULL;
 }

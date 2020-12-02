@@ -19,11 +19,11 @@ int database = 0;
 
 
 void init_state() {
-	my_sem_init(&sem_read, 1);
-	my_sem_init(&sem_write, 1);
-	my_mutex_init(&mutex_readcount);
-	my_mutex_init(&mutex_writecount);
-	my_mutex_init(&mutex_z);
+	my_sem_init_ts(&sem_read, 1);
+	my_sem_init_ts(&sem_write, 1);
+	my_mutex_init_ts(&mutex_readcount);
+	my_mutex_init_ts(&mutex_writecount);
+	my_mutex_init_ts(&mutex_z);
 }
 
 void* writer_main() {
@@ -31,32 +31,32 @@ void* writer_main() {
 	{
 		//prepare database
 		
-		my_mutex_lock(&mutex_writecount);
+		my_mutex_lock_ts(&mutex_writecount);
 
 		writecount++;
 		
 		if (writecount == 1) {
-			my_sem_wait(&sem_read);
+			my_sem_wait_ts(&sem_read);
 		}
 
-		my_mutex_unlock(&mutex_writecount);
-		my_sem_wait(&sem_write);
+		my_mutex_unlock_ts(&mutex_writecount);
+		my_sem_wait_ts(&sem_write);
 		// section critique, un seul writer à la fois
 		 
 		//----------- write database --------
 				database++;
 		//------------------------------------
 		
-		my_sem_post(&sem_write);
+		my_sem_post_ts(&sem_write);
 		
-		my_mutex_lock(&mutex_writecount);
+		my_mutex_lock_ts(&mutex_writecount);
 		
 		writecount--;
 		if (writecount == 0) {
-			my_sem_post(&sem_read);
+			my_sem_post_ts(&sem_read);
 		}
 
-		my_mutex_unlock(&mutex_writecount);
+		my_mutex_unlock_ts(&mutex_writecount);
 	}
 	return NULL;
 }
@@ -64,21 +64,21 @@ void* writer_main() {
 void* reader_main() {
 	for(int i = 0; i < NBREADING;i++)
 	{
-		my_mutex_lock(&mutex_z);
-		my_sem_wait(&sem_read);
-		my_mutex_lock(&mutex_readcount);
+		my_mutex_lock_ts(&mutex_z);
+		my_sem_wait_ts(&sem_read);
+		my_mutex_lock_ts(&mutex_readcount);
 	
 		// section critique
 		readcount++;
 		
 		if (readcount==1)
 		{ // arrivée du premier reader
-			my_sem_wait(&sem_write);
+			my_sem_wait_ts(&sem_write);
 		}
 		
-		my_mutex_unlock(&mutex_readcount);
-		my_sem_post(&sem_read);
-		my_mutex_unlock(&mutex_z);
+		my_mutex_unlock_ts(&mutex_readcount);
+		my_sem_post_ts(&sem_read);
+		my_mutex_unlock_ts(&mutex_z);
 
 		//--------- read database ----------
 		// int foo = database //produit un warning
@@ -91,10 +91,10 @@ void* reader_main() {
 		
 		if(readcount==0)
 		{ // départ du dernier reader
-			my_sem_post(&sem_write);
+			my_sem_post_ts(&sem_write);
 		}
 
-		my_mutex_unlock(&mutex_readcount);
+		my_mutex_unlock_ts(&mutex_readcount);
 	}
 	return NULL;
 }

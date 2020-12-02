@@ -27,9 +27,9 @@ void init_state() {
 		db[i] = 0; 
 
 	srand(0);
-	my_mutex_init(&mutex);
-	my_sem_init(&empty, N);
-	my_sem_init(&full, 0);
+	my_mutex_init_ts(&mutex);
+	my_sem_init_ts(&empty, N);
+	my_sem_init_ts(&full, 0);
 	item_produced = 0;
 	item_consumed = 0;
 }
@@ -51,16 +51,16 @@ void* producer_main() {
 		while(rand() > RAND_MAX/10000)
 			continue; 
 
-		my_sem_wait(&empty); // attente d'une place libre
-		my_mutex_lock(&mutex);
+		my_sem_wait_ts(&empty); // attente d'une place libre
+		my_mutex_lock_ts(&mutex);
 		
 		if(item_produced >= PRODUCED_MAX)
 		{
 
-			my_mutex_unlock(&mutex);
+			my_mutex_unlock_ts(&mutex);
 			
 			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
-			my_sem_post(&empty);
+			my_sem_post_ts(&empty);
 			return NULL; //stop production
 		}
 		
@@ -71,16 +71,16 @@ void* producer_main() {
 		 if(item_produced >= PRODUCED_MAX)
 		{
 
-			my_mutex_unlock(&mutex);
-			my_sem_post(&full);
+			my_mutex_unlock_ts(&mutex);
+			my_sem_post_ts(&full);
 			
 			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
-			my_sem_post(&empty);
+			my_sem_post_ts(&empty);
 			return NULL; //stop production
 		}
 		 
-		my_mutex_unlock(&mutex);
-		my_sem_post(&full); // il y a une place remplie en plus
+		my_mutex_unlock_ts(&mutex);
+		my_sem_post_ts(&full); // il y a une place remplie en plus
 	}
 	return NULL;
 }
@@ -88,15 +88,15 @@ void* producer_main() {
 void* consumer_main() {
 	while(1)
 	{
-		my_sem_wait(&full); // attente d'une place remplie
-		my_mutex_lock(&mutex);
+		my_sem_wait_ts(&full); // attente d'une place remplie
+		my_mutex_lock_ts(&mutex);
 
 		if(item_consumed >= CONSUMED_MAX)
 		{
-			my_mutex_unlock(&mutex);
+			my_mutex_unlock_ts(&mutex);
 			
 			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
-			my_sem_post(&full);
+			my_sem_post_ts(&full);
 			return NULL; //stop consumption
 		}
 		
@@ -107,21 +107,21 @@ void* consumer_main() {
 		
 		 if(item_consumed >= CONSUMED_MAX)
 		{
-			my_mutex_unlock(&mutex);
-			my_sem_post(&empty);
+			my_mutex_unlock_ts(&mutex);
+			my_sem_post_ts(&empty);
 			
 			//nécéssaire sinon les autres threads ne pouront pas entrer dans la sémaphore pour terminer
 			my_sem_post(&full);
 			return NULL; //stop consumption
 		}
 			 
-		my_mutex_unlock(&mutex);
+		my_mutex_unlock_ts(&mutex);
 
 		//consuming item time simulation
 		while(rand() > RAND_MAX/10000)
 			continue;
 		
-		my_sem_post(&empty); // il y a une place libre en plus
+		my_sem_post_ts(&empty); // il y a une place libre en plus
 	}
 	return NULL;
 }
