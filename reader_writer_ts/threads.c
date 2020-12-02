@@ -84,7 +84,7 @@ void* reader_main() {
 		// int foo = database //produit un warning
 		//-----------------------------------
 		
-		my_mutex_lock(&mutex_readcount);
+		my_mutex_lock_ts(&mutex_readcount);
 	
 		// section critique
 		readcount--;
