@@ -61,7 +61,7 @@ create_csv() {
     
 
 # /!\ insérer ici le nombre d'appel à create_csv
-nbOfFunc=8
+nbOfFunc=11
 ((nbOfFunc = nbOfFunc*40))
 
 create_csv MeasuresRW rw -R -W 
@@ -72,6 +72,9 @@ create_csv MeasuresTTS tts -N
 create_csv MeasuresRW2 rw2 -R -W
 create_csv MeasuresPH2 ph2 -N
 create_csv MeasuresPC2 pc2 -C -P
+create_csv MeasuresRW3 rw3 -R -W
+create_csv MeasuresPH3 ph3 -N
+create_csv MeasuresPC3 pc3 -C -P
 printf '\nFinished!\n'
 {
     chmod +x graphing.py
