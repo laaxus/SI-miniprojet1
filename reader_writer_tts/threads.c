@@ -12,8 +12,8 @@ volatile sema sem_write;
 int readcount=0; // nombre de readers
 int writecount=0;
 
-int NBWRITING=61440;
-int NBREADING=245760;
+int NBWRITING=12800;
+int NBREADING=51200;
 
 int database = 0;
 

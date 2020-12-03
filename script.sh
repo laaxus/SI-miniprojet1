@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "
-Warning! This execution might take up to 5 mins, 
+Warning! This execution might take up to 8 mins, 
 as it tries to gather significant data for all algorithms.
 Once it is done, you will see the graphs appear, and they
 will be saved in the 'Measures' directory.
